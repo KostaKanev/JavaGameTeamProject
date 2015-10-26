@@ -1,24 +1,25 @@
 package game;
 
 import display.Display;
-import graphics.ImageLoader;
+import graphics.Assets;
+import graphics.ImgLoader;
+import graphics.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
     private String title;
     private int width;
     private int height;
-
     private Thread thread;
     private boolean isRunning;
     private Display display;
-
     private BufferStrategy bs;
     private Graphics g;
-
+    private SpriteSheet sh;
+    private int x = 235;
+    private int y = 544;
     public Game(String title, int width, int height){
 
         this.title = title;
@@ -28,7 +29,9 @@ public class Game implements Runnable{
     }
 
     public void init(){
-       display =  new Display(this.title, this.width, this.height);
+       this.display =  new Display(this.title, this.width, this.height);
+        this.sh = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
+        Assets.init();
     }
 
     private void tick(){
@@ -36,7 +39,7 @@ public class Game implements Runnable{
     }
 
     private void render(){
-        this.bs = display.getCanvas().getBufferStrategy();
+        this.bs = this.display.getCanvas().getBufferStrategy();
 
         if(this.bs == null){
             this.display.getCanvas().createBufferStrategy(2);
@@ -44,36 +47,36 @@ public class Game implements Runnable{
         }
 
         this.g = this.bs.getDrawGraphics();
+        this.g.clearRect(0,0,this.width,this.height);
+        this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
+        //this.g.drawImage(this.sh.crop(0,0,256,256),0,0,null);
+        this.g.drawImage(Assets.policeCar,x,y,null);
 
-        //g.clearRect(0, 0, this.width, this.height); we can clear
-        //set color
-        //g.setColor(Color.cyan);
-        //here we can draw
-        //g.fillRect(3, 3, 20, 20);
-        //again
-        // g.setColor(Color.cyan);
-        //g.fillOval(10, 20, 30, 40);
-
-        BufferedImage img = ImageLoader.loadImage("/images/background.png");
-        g.drawImage(img, 0, 0, null);
         this.bs.show();
         this.g.dispose();
+
     }
 
     @Override
     public void run() {
+        this.init();
+        int fps = 30;
+        double ticksPF = 1_000_000_000/fps;
+        double delta = 0;
+        long now;
+        long lastTT = System.nanoTime();
 
-        init();
         while(isRunning){
-            try {
-                Thread.sleep(60);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            now = System.nanoTime();
+            delta += (now - lastTT) / ticksPF;
+            lastTT = now;
+            if (delta >=1){
+                tick();
+                render();
+                delta--;
             }
-            tick();
-            render();
         }
-        stop();
+        this.stop();
     }
 
     public synchronized void start(){
