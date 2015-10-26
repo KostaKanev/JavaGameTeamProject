@@ -1,8 +1,8 @@
 package game;
-import java.applet.Applet;
 
+public class GameApp {
 
-@SuppressWarnings("serial")
-public class GameApp extends Applet{
-
+    public static void main(String[] args) {
+        new Display("Game Title",550, 550);
+    }
 }
