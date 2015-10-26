@@ -20,6 +20,11 @@ public class Display extends Canvas{
 
         createFrame();
     }
+
+    public Canvas getCanvas(){
+        return this.canvas;
+    }
+
     private void createFrame(){
         frame = new JFrame(this.title);
         frame.setSize(this.width, this.height);
