@@ -1,9 +1,11 @@
 package game;
 
 import display.Display;
+import graphics.ImageLoader;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game implements Runnable{
     private String title;
@@ -43,15 +45,17 @@ public class Game implements Runnable{
 
         this.g = this.bs.getDrawGraphics();
 
+        //g.clearRect(0, 0, this.width, this.height); we can clear
         //set color
-        g.setColor(Color.cyan);
+        //g.setColor(Color.cyan);
         //here we can draw
-        g.fillRect(3, 3, 20, 20);
-
+        //g.fillRect(3, 3, 20, 20);
         //again
-        g.setColor(Color.cyan);
-        g.fillOval(10, 20, 30, 40);
+        // g.setColor(Color.cyan);
+        //g.fillOval(10, 20, 30, 40);
 
+        BufferedImage img = ImageLoader.loadImage("/images/background.png");
+        g.drawImage(img, 0, 0, null);
         this.bs.show();
         this.g.dispose();
     }
@@ -61,6 +65,11 @@ public class Game implements Runnable{
 
         init();
         while(isRunning){
+            try {
+                Thread.sleep(60);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             tick();
             render();
         }
