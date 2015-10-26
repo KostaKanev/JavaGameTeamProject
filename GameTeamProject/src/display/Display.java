@@ -1,14 +1,16 @@
-package game;
+package display;
 
 import javax.swing.*;
+import java.awt.*;
 
-public class Display {
+public class Display extends Canvas{
 
     private int width;
     private int height;
     private String title;
 
     private JFrame frame;
+    private Canvas canvas;
 
     public Display(String title, int width, int height){
 
@@ -26,5 +28,13 @@ public class Display {
         frame.setLocationRelativeTo(null);
         frame.setFocusable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        canvas = new Canvas();
+        canvas.setPreferredSize(new Dimension(this.width, this.height));
+        canvas.setMaximumSize(new Dimension(this.width, this.height));
+        canvas.setMinimumSize(new Dimension(this.width, this.height));
+
+        frame.add(canvas);
+        frame.pack();
     }
 }
