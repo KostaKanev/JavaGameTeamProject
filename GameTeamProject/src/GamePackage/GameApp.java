@@ -1,4 +1,8 @@
 package GamePackage;
+import java.applet.Applet;
 
-public class GameApp {
+
+@SuppressWarnings("serial")
+public class GameApp extends Applet{
+
 }
