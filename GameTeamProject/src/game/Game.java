@@ -19,7 +19,7 @@ public class Game implements Runnable{
     private Graphics g;
     private SpriteSheet sh;
     private int x = 235;
-    private int y = 544;
+    private int y = 420;
     public Game(String title, int width, int height){
 
         this.title = title;
