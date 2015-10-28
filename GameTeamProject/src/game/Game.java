@@ -18,8 +18,8 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
     private SpriteSheet sh;
-    private int x = 235;
-    private int y = 420;
+    private int x = 269;
+    private int y = 410;
     public Game(String title, int width, int height){
 
         this.title = title;
@@ -29,7 +29,7 @@ public class Game implements Runnable{
     }
 
     public void init(){
-       this.display =  new Display(this.title, this.width, this.height);
+        this.display =  new Display(this.title, this.width, this.height);
         this.sh = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
     }
