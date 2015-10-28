@@ -40,6 +40,6 @@ public class Display extends Canvas{
         canvas.setMinimumSize(new Dimension(this.width, this.height));
 
         frame.add(canvas);
-        frame.pack();
+        frame.pack();//add canvas
     }
 }

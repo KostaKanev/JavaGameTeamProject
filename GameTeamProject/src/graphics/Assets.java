@@ -4,15 +4,19 @@ import java.awt.image.BufferedImage;
 
 
 public class Assets {
-
-    public static BufferedImage car, policeCar;
+    private static final int width = 125;
+    private static final int height = 256;
+    public static BufferedImage playerCar1, playerCar2, playerCar3, ambulance;
 
     public  static void init(){
         SpriteSheet spriteSheet = new SpriteSheet(
                 ImgLoader.loadImage("/img/car.png")
         );
 
-        policeCar = spriteSheet.crop(0,0,256,256);
-        car = spriteSheet.crop(256,0,256,256);
+        playerCar1 = spriteSheet.crop(0,0,width,height);
+        playerCar2 = spriteSheet.crop(width*2 - (width/3),0,width,height);
+        playerCar3 = spriteSheet.crop(width*4,0,width,height);
+        ambulance = spriteSheet.crop(width*3,0,width,height);
+
     }
 }

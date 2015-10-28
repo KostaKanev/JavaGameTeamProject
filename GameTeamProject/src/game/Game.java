@@ -18,14 +18,18 @@ public class Game implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
     private SpriteSheet sh;
-    private int x = 269;
-    private int y = 410;
-    public Game(String title, int width, int height){
+    private int x;
+    private int y;
+
+    public Game(String title, int width, int height)
+    {
 
         this.title = title;
         this.width = width;
         this.height = height;
         this.isRunning = false;
+        this.x = 270;
+        this.y = 410;
     }
 
     public void init(){
@@ -35,7 +39,7 @@ public class Game implements Runnable{
     }
 
     private void tick(){
-
+        this.y -=1;//check move
     }
 
     private void render(){
@@ -47,10 +51,13 @@ public class Game implements Runnable{
         }
 
         this.g = this.bs.getDrawGraphics();
-        this.g.clearRect(0,0,this.width,this.height);
+        //this.g.clearRect(0,0,this.width,this.height);
         this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
-        //this.g.drawImage(this.sh.crop(0,0,256,256),0,0,null);
-        this.g.drawImage(Assets.policeCar,x,y,null);
+        //this.g.drawImage(Assets.playerCar1,x,y,null);
+         //this.g.drawImage(Assets.playerCar2,x + 45,y,null);
+        // this.g.drawImage(Assets.ambulance,x + 30,y,null);
+        this.g.drawImage(Assets.playerCar3,x,y,null);
+
 
         this.bs.show();
         this.g.dispose();
@@ -70,7 +77,7 @@ public class Game implements Runnable{
             now = System.nanoTime();
             delta += (now - lastTT) / ticksPF;
             lastTT = now;
-            if (delta >=1){
+            if (delta >= 1){
                 tick();
                 render();
                 delta--;
