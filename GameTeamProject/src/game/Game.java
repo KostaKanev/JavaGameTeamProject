@@ -17,6 +17,8 @@ public class Game implements Runnable{
     private Display display;
     private BufferStrategy bs;
     private Graphics g;
+    private InputHandler ih;
+
     private SpriteSheet spriteSheet;
     private int x;
     private int y;
@@ -25,9 +27,9 @@ public class Game implements Runnable{
     private OtherCars otherCar;
 
 
+
     public Game(String title, int width, int height)
     {
-
         this.title = title;
         this.width = width;
         this.height = height;
@@ -38,16 +40,26 @@ public class Game implements Runnable{
 
     public void init(){
         this.display =  new Display(this.title, this.width, this.height);
+        this.ih = new InputHandler(this.display);
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
-        this.player = new Player(270, 410, 3);
-        this.otherCar = new OtherCars(270, 10);
+        this.player = new Player(this.x + 10, this.y, 1);
+        this.otherCar = new OtherCars(this.x, 10);
+
     }
 
     private void tick(){
-        this.y -= 5;//check move
+       // this.y -= 5;//check move
         this.player.tick();
         this.otherCar.tick();
+
+        if(this.player.intersects(otherCar)){
+            this.player.lives--;
+        }
+        if(this.player.lives <= 0){
+            System.out.println("Dead");
+            stop();
+        }
     }
 
     private void render(){
