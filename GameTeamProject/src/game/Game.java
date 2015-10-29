@@ -22,6 +22,7 @@ public class Game implements Runnable{
     private int y;
 
     private Player player;
+    private OtherCars otherCar;
 
 
     public Game(String title, int width, int height)
@@ -40,11 +41,13 @@ public class Game implements Runnable{
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
         this.player = new Player(270, 410, 3);
+        this.otherCar = new OtherCars(270, 10);
     }
 
     private void tick(){
         this.y -= 5;//check move
         this.player.tick();
+        this.otherCar.tick();
     }
 
     private void render(){
@@ -61,10 +64,10 @@ public class Game implements Runnable{
         //this.g.clearRect(0,0,this.width,this.height);
         this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
         //this.g.drawImage(this.player, 100, 100, null);
-       // this.g.drawImage(Assets.playerCar1,x,y,null);
+        //this.g.drawImage(Assets.playerCar1,x,y,null);
         //this.g.drawImage(Assets.playerCar2,x + 45,y,null);
         //this.g.drawImage(Assets.ambulance,x + 30,y,null);
-       // this.g.drawImage(Assets.policeCar,x + 15,y,null);
+        //this.g.drawImage(Assets.policeCar,x + 15,y,null);
         //this.g.drawImage(Assets.taxi,x + 30,y,null);
         //this.g.drawImage(Assets.playerCar4,x + 25,y,null);
         //this.g.drawImage(Assets.playerCar5,x,y,null);
@@ -72,6 +75,7 @@ public class Game implements Runnable{
         //this.g.drawImage(Assets.playerCar7,x + 25,y,null);
 
         this.player.render(g);
+        this.otherCar.render(g);
         //END DRAWING
 
         this.bs.show();
