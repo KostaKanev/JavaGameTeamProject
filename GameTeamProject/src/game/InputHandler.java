@@ -8,7 +8,7 @@ import java.awt.event.KeyListener;
 public class InputHandler implements KeyListener{
 
     public InputHandler(Display display){
-        display.addKeyListener(this);
+        display.getCanvas().addKeyListener(this);
     }
 
     @Override
