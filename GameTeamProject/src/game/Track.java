@@ -16,9 +16,7 @@ public class Track {
     public Track (int x, int y) {
         this.x = x;
         this.y = y;
-
         this.velosity = 2;
-
         this.trackImage = ImgLoader.loadImage("/img/bkg.jpg");
     }
 
