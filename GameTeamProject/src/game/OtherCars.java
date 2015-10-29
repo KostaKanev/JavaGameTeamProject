@@ -26,10 +26,12 @@ public class OtherCars {
     }
 
     public void tick(){
-        this.y += this.velosity;
+
+        //this.y += this.velosity;
     }
 
     public void render(Graphics g){
+
         g.drawImage(this.playerImage, this.x, this.y, null);
     }
 }

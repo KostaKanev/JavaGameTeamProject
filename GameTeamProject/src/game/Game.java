@@ -26,6 +26,8 @@ public class Game implements Runnable{
     private Player player;
     private OtherCars otherCar;
 
+    private Track track;
+
 
 
     public Game(String title, int width, int height)
@@ -43,15 +45,17 @@ public class Game implements Runnable{
         this.ih = new InputHandler(this.display);
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
+        this.track = new Track(this.x,this.y - 500);
         this.player = new Player(this.x + 10, this.y, 1);
         this.otherCar = new OtherCars(this.x, 10);
-
+        
     }
 
     private void tick(){
        // this.y -= 5;//check move
         this.player.tick();
         this.otherCar.tick();
+        this.track.tick();
 
         if(this.player.intersects(otherCar)){
             this.player.lives--;
@@ -74,7 +78,7 @@ public class Game implements Runnable{
 
         //START DRAWING
         //this.g.clearRect(0,0,this.width,this.height);
-        this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
+        //this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
         //this.g.drawImage(this.player, 100, 100, null);
         //this.g.drawImage(Assets.playerCar1,x,y,null);
         //this.g.drawImage(Assets.playerCar2,x + 45,y,null);
@@ -85,9 +89,10 @@ public class Game implements Runnable{
         //this.g.drawImage(Assets.playerCar5,x,y,null);
         //this.g.drawImage(Assets.playerCar6,x + 10,y,null);
         //this.g.drawImage(Assets.playerCar7,x + 25,y,null);
-
+        this.track.render(g);
         this.player.render(g);
         this.otherCar.render(g);
+
         //END DRAWING
 
         this.bs.show();
