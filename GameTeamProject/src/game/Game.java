@@ -40,6 +40,7 @@ public class Game implements Runnable{
         this.y = 410;
     }
 
+
     public void init(){
         this.display =  new Display(this.title, this.width, this.height);
         this.ih = new InputHandler(this.display);

@@ -16,18 +16,26 @@ public class Track {
     public Track (int x, int y) {
         this.x = x;
         this.y = y;
-        this.velosity = 2;
+        this.velosity = 10;
         this.trackImage = ImgLoader.loadImage("/img/bkg.jpg");
     }
 
     public void tick(){
 
-        this.y += 1;
+        this.y += this.velosity;
+
     }
 
     public void render(Graphics g){
 
         g.drawImage(this.trackImage,0 , this.y, null);
+        //Change number of iterations to increase track length :)
+        //5 = 10 sec
+        //10 = 20 sec
+        //15 = 30 sec
+        //...
+        for (int i = 1; i < 10; i++) {
+            g.drawImage(this.trackImage, 0, this.y - (660 * i),null);
+        }
     }
-
 }
