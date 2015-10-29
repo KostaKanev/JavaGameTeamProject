@@ -17,9 +17,12 @@ public class Game implements Runnable{
     private Display display;
     private BufferStrategy bs;
     private Graphics g;
-    private SpriteSheet sh;
+    private SpriteSheet spriteSheet;
     private int x;
     private int y;
+
+    //private BufferedImage player;
+
 
     public Game(String title, int width, int height)
     {
@@ -34,8 +37,9 @@ public class Game implements Runnable{
 
     public void init(){
         this.display =  new Display(this.title, this.width, this.height);
-        this.sh = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
+        this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
+        //player = Assets.playerCar1;
     }
 
     private void tick(){
@@ -51,13 +55,22 @@ public class Game implements Runnable{
         }
 
         this.g = this.bs.getDrawGraphics();
+
+        //START DRAWING
         //this.g.clearRect(0,0,this.width,this.height);
         this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
-        //this.g.drawImage(Assets.playerCar1,x,y,null);
-         //this.g.drawImage(Assets.playerCar2,x + 45,y,null);
-        // this.g.drawImage(Assets.ambulance,x + 30,y,null);
-        this.g.drawImage(Assets.playerCar3,x,y,null);
+        //this.g.drawImage(this.player, 100, 100, null);
 
+       // this.g.drawImage(Assets.playerCar1,x,y,null);
+        //this.g.drawImage(Assets.playerCar2,x + 45,y,null);
+        //this.g.drawImage(Assets.ambulance,x + 30,y,null);
+        this.g.drawImage(Assets.policeCar,x + 15,y,null);
+        //this.g.drawImage(Assets.taxi,x + 30,y,null);
+        //this.g.drawImage(Assets.playerCar4,x + 25,y,null);
+        //this.g.drawImage(Assets.playerCar5,x,y,null);
+        //this.g.drawImage(Assets.playerCar6,x + 10,y,null);
+        //this.g.drawImage(Assets.playerCar7,x + 25,y,null);
+        //END DRAWING
 
         this.bs.show();
         this.g.dispose();
@@ -68,19 +81,20 @@ public class Game implements Runnable{
     public void run() {
         this.init();
         int fps = 30;
-        double ticksPF = 1_000_000_000/fps;
+        double ticksPF = 1_000_000_000 / fps;
         double delta = 0;
         long now;
-        long lastTT = System.nanoTime();
+        long lastTimeTicked = System.nanoTime();
 
         while(isRunning){
             now = System.nanoTime();
-            delta += (now - lastTT) / ticksPF;
-            lastTT = now;
+            delta += (now - lastTimeTicked) / ticksPF;
+            lastTimeTicked = now;
             if (delta >= 1){
                 tick();
                 render();
                 delta--;
+
             }
         }
         this.stop();
