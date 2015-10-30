@@ -49,7 +49,7 @@ public class Game implements Runnable {
     private void tick(){
        // this.y -= 5;//check move
 
-        //this.otherCar.tick();
+        this.otherCar.tick();
         this.track.tick();
         this.player.tick();
         this.scoreboard.tick();

@@ -30,10 +30,10 @@ public class InputHandler implements KeyListener {
         int keyCode = e.getKeyCode();
 
         if(keyCode == KeyEvent.VK_LEFT){
-            Player.moovingLeft = true;
+            Player.moovingLeft = false;
         }
         if(keyCode == KeyEvent.VK_RIGHT){
-            Player.moovingRight = true;
+            Player.moovingRight = false;
         }
     }
 
