@@ -25,10 +25,10 @@ public class Scoreboard {
         for (int i = 0; i < 5 ; i++) {
             g.drawImage(Assets.nineScore,480 + (45 * i),250,null);
         }
-        //g.drawImage(Assets.hearthImage,480,117,null);
+        g.drawImage(Assets.hearthImage,480,117,null);
         g.drawImage(Assets.zeroLives,545,70,null);
         g.drawImage(Assets.oneLives,635,70,null);
-        //g.drawImage(Assets.score, 490, 220, null);
+        g.drawImage(Assets.score, 490, 220, null);
 
     }
 }

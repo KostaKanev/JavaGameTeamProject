@@ -20,6 +20,7 @@ public class OtherCars {
     }
 
     public void tick(){
+
         this.y += this.velosity;
     }
 
