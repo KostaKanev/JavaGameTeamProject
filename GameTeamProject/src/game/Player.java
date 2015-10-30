@@ -38,6 +38,7 @@ public class Player {
     }
 
     public void render(Graphics g){
+
         g.drawImage(this.playerImage, this.x, this.y, null);
     }
 

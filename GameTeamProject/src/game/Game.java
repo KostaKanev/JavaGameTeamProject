@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{
-    public static final int WIDTH = 480;
+    public static final int WIDTH = 720;
     public static final int HEIGHT = 660;
     public static final int START_POSITION = 480 - 210;
     private String title;
@@ -25,6 +25,7 @@ public class Game implements Runnable{
     private static Player player;
     private OtherCars otherCar;
     private Track track;
+    private Scoreboard scoreboard;
 
     public Game(String title)
     {
@@ -40,14 +41,16 @@ public class Game implements Runnable{
         this.track = new Track(START_POSITION,this.HEIGHT);
         this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
         this.otherCar = new OtherCars(START_POSITION, 10);
+        this.scoreboard = new Scoreboard(0,0);
 
     }
 
     private void tick(){
        // this.y -= 5;//check move
         this.player.tick();
-        this.otherCar.tick();
+        //this.otherCar.tick();
         this.track.tick();
+        this.scoreboard.tick();
 
         if(this.player.intersects(otherCar)){
            this.player.lives--;
@@ -84,6 +87,7 @@ public class Game implements Runnable{
         this.track.render(g);
         this.player.render(g);
         this.otherCar.render(g);
+        this.scoreboard.render(g);
 
         //END DRAWING
 
