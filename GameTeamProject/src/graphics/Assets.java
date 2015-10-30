@@ -15,7 +15,7 @@ public class Assets {
     public static BufferedImage zeroScore, oneScore , twoScore, threeScore,
             fourScore, fiveScore, sixScore, sevenScore, eightScore, nineScore;
     public static BufferedImage zeroLives, oneLives, twoLives, threeLives,
-            fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives;
+            fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives, score;
     public static BufferedImage hearthImage;
     public static BufferedImage scoreboardImage;
 
@@ -71,6 +71,7 @@ public class Assets {
         scoreboardImage = ImgLoader.loadImage("/img/scoreboardBack.jpg");
         //Items
         hearthImage = ImgLoader.loadImage("/img/heart.png");
+        score = ImgLoader.loadImage("/img/score5.png");
 
         //players for animation
       /*  animPoliceCar1 = spriteSheet.crop(0,height,width,height);

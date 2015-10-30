@@ -28,6 +28,7 @@ public class Scoreboard {
         g.drawImage(Assets.hearthImage,480,117,null);
         g.drawImage(Assets.zeroLives,545,70,null);
         g.drawImage(Assets.oneLives,635,70,null);
+        g.drawImage(Assets.score, 490, 220, null);
 
     }
 }
