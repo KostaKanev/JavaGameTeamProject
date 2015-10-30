@@ -43,7 +43,7 @@ public class Player {
 
     public boolean intersects(OtherCars car){
         boolean isBlow = false;
-        if((car.y >= this.y - 160 )&& (car.x >= this.x && car.x <= this.x + 60)){
+        if((car.y >= this.y - 160 && car.y <= this.y + 160)&&(car.x >= this.x && car.x <= this.x + 60)){
             isBlow = true;
         }
         return isBlow;
