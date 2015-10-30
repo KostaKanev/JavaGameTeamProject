@@ -33,15 +33,10 @@ public class Scoreboard {
     public void render(Graphics g) {
 
         for (int i = 0; i < 5 ; i++) {
-            g.drawImage(Assets.zeroScore,480 + (45 * i),250,null);
+            g.drawImage(Assets.nineScore,480 + (45 * i),250,null);
         }
         g.drawImage(Assets.zeroLives,525,70,null);
         g.drawImage(Assets.oneLives,613,70,null);
 
     }
-
-
-
-
-
 }

@@ -8,7 +8,7 @@ import graphics.SpriteSheet;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 
-public class Game implements Runnable{
+public class Game implements Runnable {
     public static final int WIDTH = 720;
     public static final int HEIGHT = 660;
     public static final int START_POSITION = 480 - 210;
@@ -39,6 +39,7 @@ public class Game implements Runnable{
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
         this.track = new Track(START_POSITION,this.HEIGHT);
+
         this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
         this.otherCar = new OtherCars(START_POSITION, 10);
         this.scoreboard = new Scoreboard(0,0);
@@ -47,9 +48,10 @@ public class Game implements Runnable{
 
     private void tick(){
        // this.y -= 5;//check move
-        this.player.tick();
+
         //this.otherCar.tick();
         this.track.tick();
+        this.player.tick();
         this.scoreboard.tick();
 
         if(this.player.intersects(otherCar)){
