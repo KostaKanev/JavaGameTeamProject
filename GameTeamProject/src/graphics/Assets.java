@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 public class Assets {
     private static final int width = 125;
     private static final int height = 350;
+
     public static BufferedImage playerCar1, playerCar2, playerCar3, ambulance, policeCar, taxi, playerCar4,
             playerCar5, playerCar6, playerCar7, animPoliceCar1, animPoliceCar2, animPoliceCar3;
 

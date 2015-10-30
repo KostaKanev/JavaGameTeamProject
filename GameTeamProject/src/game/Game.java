@@ -9,9 +9,10 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{
+    public static int WIDTH = 480;
+    public static int HEIGHT = 660;
+
     private String title;
-    private int width;
-    private int height;
     private Thread thread;
     private boolean isRunning;
     private Display display;
@@ -20,36 +21,27 @@ public class Game implements Runnable{
     private InputHandler ih;
 
     private SpriteSheet spriteSheet;
-    private int x;
-    private int y;
 
-    private Player player;
+    public static Player player;
     private OtherCars otherCar;
 
     private Track track;
 
-
-
-    public Game(String title, int width, int height)
+    public Game(String title)
     {
         this.title = title;
-        this.width = width;
-        this.height = height;
         this.isRunning = false;
-        this.x = 270;
-        this.y = 410;
     }
 
-
     public void init(){
-        this.display =  new Display(this.title, this.width, this.height);
+        this.display =  new Display(this.title, this.WIDTH, this.HEIGHT);
         this.ih = new InputHandler(this.display);
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
-        this.track = new Track(this.x,this.y - 500);
-        this.player = new Player(this.x + 10, this.y, 1);
-        this.otherCar = new OtherCars(this.x, 10);
-        
+        this.track = new Track(this.WIDTH - 210 ,this.HEIGHT);
+        this.player = new Player(this.WIDTH - 200, this.HEIGHT - 250, 1);
+        this.otherCar = new OtherCars(this.WIDTH - 210, 10);
+
     }
 
     private void tick(){
@@ -59,9 +51,9 @@ public class Game implements Runnable{
         this.track.tick();
 
         if(this.player.intersects(otherCar)){
-            this.player.lives--;
+           this.player.lives--;
         }
-        if(this.player.lives <= 0){
+        if(this.player.lives <= 0) {
             System.out.println("Dead");
             stop();
         }
@@ -74,8 +66,8 @@ public class Game implements Runnable{
             this.display.getCanvas().createBufferStrategy(2);
             this.bs = display.getCanvas().getBufferStrategy();
         }
-
         this.g = this.bs.getDrawGraphics();
+
 
         //START DRAWING
         //this.g.clearRect(0,0,this.width,this.height);
@@ -98,7 +90,6 @@ public class Game implements Runnable{
 
         this.bs.show();
         this.g.dispose();
-
     }
 
     @Override

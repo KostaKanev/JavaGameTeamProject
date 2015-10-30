@@ -25,7 +25,6 @@ public class Player {
         moovingRight = false;
 
         this.playerImage = Assets.policeCar;
-
     }
 
     public void tick(){
