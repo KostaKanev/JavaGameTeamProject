@@ -16,6 +16,8 @@ public class Assets {
             fourScore, fiveScore, sixScore, sevenScore, eightScore, nineScore;
     public static BufferedImage zeroLives, oneLives, twoLives, threeLives,
             fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives;
+    public static BufferedImage hearthImage;
+    public static BufferedImage scoreboardImage;
 
     public  static void init(){
         SpriteSheet spriteSheet = new SpriteSheet(
@@ -64,6 +66,11 @@ public class Assets {
         eightLives = digitsSprite.crop(865,liveDigitsY,90,livesDigitHeight);
         nineLives = digitsSprite.crop(970,liveDigitsY,91,livesDigitHeight);
 
+
+        //Scoreboard Image
+        scoreboardImage = ImgLoader.loadImage("/img/scoreboardBack.jpg");
+        //Items
+        hearthImage = ImgLoader.loadImage("/img/hearth.png");
 
         //players for animation
       /*  animPoliceCar1 = spriteSheet.crop(0,height,width,height);
