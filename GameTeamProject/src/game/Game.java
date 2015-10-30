@@ -9,9 +9,9 @@ import java.awt.*;
 import java.awt.image.BufferStrategy;
 
 public class Game implements Runnable{
-    public static int WIDTH = 480;
-    public static int HEIGHT = 660;
-    private  final int START_POSITION = 480 - 210;
+    public static final int WIDTH = 480;
+    public static final int HEIGHT = 660;
+    public static final int START_POSITION = 480 - 210;
     private String title;
     private Thread thread;
     private boolean isRunning;

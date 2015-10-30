@@ -26,7 +26,7 @@ public class OtherCars {
     public void render(Graphics g){
         g.drawImage(this.playerImage, this.x, this.y, null);
         if(this.y >= Game.HEIGHT){
-            this.y = -250;
+            this.y = -210;
             this.createNewCar(g);
         }
     }
