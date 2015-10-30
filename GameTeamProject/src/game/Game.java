@@ -49,11 +49,18 @@ public class Game implements Runnable {
     private void tick(){
        // this.y -= 5;//check move
 
-        this.otherCar.tick();
+        //this.otherCar.tick();
         this.track.tick();
         this.player.tick();
         this.scoreboard.tick();
 
+        if (this.player.x <= 25) {
+
+            this.player.x = 25;
+        } else if (this.player.x >= 303) {
+
+            this.player.x = 303;
+        }
         if(this.player.intersects(otherCar)){
            this.player.lives--;
         }
@@ -61,6 +68,7 @@ public class Game implements Runnable {
             System.out.println("Dead");
             stop();
         }
+
     }
 
     private void render(){

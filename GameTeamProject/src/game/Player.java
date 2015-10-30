@@ -20,7 +20,7 @@ public class Player {
         this.y = y;
         this.lives = lives;
 
-        this.velosity = 1;
+        this.velosity = 8;
         moovingLeft = false;
         moovingRight = false;
 
