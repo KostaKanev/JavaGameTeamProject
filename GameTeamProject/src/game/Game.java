@@ -11,7 +11,7 @@ import java.awt.image.BufferStrategy;
 public class Game implements Runnable{
     public static int WIDTH = 480;
     public static int HEIGHT = 660;
-
+    private  final int START_POSITION = 480 - 210;
     private String title;
     private Thread thread;
     private boolean isRunning;
@@ -22,9 +22,8 @@ public class Game implements Runnable{
 
     private SpriteSheet spriteSheet;
 
-    public static Player player;
+    private static Player player;
     private OtherCars otherCar;
-
     private Track track;
 
     public Game(String title)
@@ -38,9 +37,9 @@ public class Game implements Runnable{
         this.ih = new InputHandler(this.display);
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
-        this.track = new Track(this.WIDTH - 210 ,this.HEIGHT);
-        this.player = new Player(this.WIDTH - 200, this.HEIGHT - 250, 1);
-        this.otherCar = new OtherCars(this.WIDTH - 210, 10);
+        this.track = new Track(START_POSITION,this.HEIGHT);
+        this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
+        this.otherCar = new OtherCars(START_POSITION, 10);
 
     }
 
