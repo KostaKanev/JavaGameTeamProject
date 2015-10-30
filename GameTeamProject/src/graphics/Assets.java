@@ -70,7 +70,7 @@ public class Assets {
         //Scoreboard Image
         scoreboardImage = ImgLoader.loadImage("/img/scoreboardBack.jpg");
         //Items
-        hearthImage = ImgLoader.loadImage("/img/hearth.png");
+        hearthImage = ImgLoader.loadImage("/img/heart.png");
 
         //players for animation
       /*  animPoliceCar1 = spriteSheet.crop(0,height,width,height);

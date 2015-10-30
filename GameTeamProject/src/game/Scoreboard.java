@@ -11,20 +11,12 @@ public class Scoreboard {
     public int x;
     public int y;;
 
-
-
     public Scoreboard(int x, int y) {
-
-
         //this.x = 0;
         //this.y = 0;
-
     }
 
-
     public void tick() {
-
-
 
     }
 
@@ -33,9 +25,9 @@ public class Scoreboard {
         for (int i = 0; i < 5 ; i++) {
             g.drawImage(Assets.nineScore,480 + (45 * i),250,null);
         }
-        g.drawImage(Assets.hearthImage,555,0,null);
-        g.drawImage(Assets.zeroLives,525,70,null);
-        g.drawImage(Assets.oneLives,613,70,null);
+        g.drawImage(Assets.hearthImage,480,117,null);
+        g.drawImage(Assets.zeroLives,545,70,null);
+        g.drawImage(Assets.oneLives,635,70,null);
 
     }
 }
