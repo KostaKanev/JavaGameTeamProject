@@ -40,7 +40,7 @@ public class Player {
         //this.y -= this.velosity;
         this.leftBound.setBounds(this.x + 40, this.y + 80,15, 150);
         this.rightBounding.setBounds(this.x+105,this.y+80,15,150);
-        this.frontBounds.setBounds(this.x + 5, this.y + 70, 60, 5);
+        this.frontBounds.setBounds(this.x + 45, this.y + 70, 60, 10);
         if (moovingLeft && !leftHit) {
             this.x -= velosity;
         }
