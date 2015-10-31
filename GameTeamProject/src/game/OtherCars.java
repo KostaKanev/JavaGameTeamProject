@@ -10,12 +10,11 @@ public class OtherCars {
     public int y;
     public int velosity;
     private BufferedImage playerImage;
-    private Random random;
 
     public OtherCars(int x, int y){
         this.x = x;
         this.y = y;
-        this.velosity = 2;
+        this.velosity = 8;
         this.playerImage = Assets.playerCar1;
     }
 
@@ -26,14 +25,21 @@ public class OtherCars {
 
     public void render(Graphics g){
         g.drawImage(this.playerImage, this.x, this.y, null);
+
+        Random rand = new Random();
+        int randomX = rand.nextInt((303 - 25) + 1) + 25;
+        int dropPositionY = -250;
+
         if(this.y >= Game.HEIGHT){
-            this.y = -210;
-            this.createNewCar(g);
+            this.y = dropPositionY;
+            this.x = randomX;
+
+            this.createNewCar(g,randomX,dropPositionY);
         }
     }
 
-   public void createNewCar(Graphics g){
-       g.drawImage(this.playerImage, this.x, this.y, null);
+   public void createNewCar(Graphics g, int x, int y){
+       g.drawImage(this.playerImage, x, y, null);
 
    }
 }

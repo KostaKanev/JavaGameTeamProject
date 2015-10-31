@@ -1,10 +1,7 @@
 package game;
 
 import graphics.Assets;
-import graphics.ImgLoader;
-
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 public class Scoreboard {
 
