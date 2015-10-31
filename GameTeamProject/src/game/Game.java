@@ -4,7 +4,6 @@ import display.Display;
 import graphics.Assets;
 import graphics.ImgLoader;
 import graphics.SpriteSheet;
-import objects.LifePoint;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -27,7 +26,6 @@ public class Game implements Runnable {
     private OtherCars otherCar;
     private Track track;
     private Scoreboard scoreboard;
-    private LifePoint lifePoint;
 
     public Game(String title)
     {
@@ -41,21 +39,20 @@ public class Game implements Runnable {
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
         this.track = new Track(START_POSITION,this.HEIGHT);
-
+        this.otherCar = new OtherCars(START_POSITION, 10);
         this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
-        this.otherCar = new OtherCars(START_POSITION - 100, 10);
+
         this.scoreboard = new Scoreboard(0,0);
-        this.lifePoint = new LifePoint(START_POSITION,0);
 
     }
 
     private void tick(){
+       // this.y -= 5;//check move
 
         this.otherCar.tick();
         this.track.tick();
         this.player.tick();
         this.scoreboard.tick();
-        this.lifePoint.tick();
 
         if (this.player.x <= 25) {
 
@@ -64,13 +61,12 @@ public class Game implements Runnable {
 
             this.player.x = 303;
         }
-
         if(this.player.intersects(otherCar)){
            this.player.lives--;
         }
         if(this.player.lives <= 0) {
-            System.out.println("Dead");
-            stop();
+           // System.out.println("Dead");
+           // stop();
         }
 
     }
@@ -102,7 +98,6 @@ public class Game implements Runnable {
         this.player.render(g);
         this.otherCar.render(g);
         this.scoreboard.render(g);
-        this.lifePoint.render(g);
 
         //END DRAWING
 
