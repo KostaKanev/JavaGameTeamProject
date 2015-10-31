@@ -14,7 +14,7 @@ public class OtherCars {
     public OtherCars(int x, int y){
         this.x = x;
         this.y = y;
-        this.velosity = 8;
+        this.velosity = 10;
         this.playerImage = Assets.playerCar1;
     }
 

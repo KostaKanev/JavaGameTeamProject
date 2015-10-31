@@ -18,7 +18,7 @@ public class LifePoint {
         this.x = x;
         this.y = y;
         this.lifeImage = Assets.hearthImage;
-        this.velocity = 8;
+        this.velocity = 7;
     }
 
     public void tick(){
