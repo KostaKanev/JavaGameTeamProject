@@ -10,7 +10,7 @@ public class OtherCars {
     private final int DROP_POSITION_Y = -250;
 
     private int x;
-    private int y;
+    public static int y;
     private int velosity;
     private BufferedImage playerImage;
     private Random random;
@@ -18,11 +18,11 @@ public class OtherCars {
                  ,firstRightPoint,secondRightPoint,thirdRightPoint,
                  leftRearPoint,rightRearPoint;
 
-    public OtherCars(int x, int y){
+    public OtherCars(int x, int y, BufferedImage playerImage, int velosity){
         this.x = x;
         this.y = y;
-        this.velosity = 4;
-        this.playerImage = Assets.playerCar1;
+        this.velosity = velosity;
+        this.playerImage = playerImage;
     }
 
     public void tick(){
@@ -50,7 +50,6 @@ public class OtherCars {
             this.y = DROP_POSITION_Y;
             this.x = randomNum;
             this.createNewCar(g);
-
         }
     }
 

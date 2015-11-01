@@ -21,13 +21,14 @@ public class Player {
     public static boolean moovingRight;
 
     private BufferedImage playerImage;
+    private ArrayList<Point> points;
 
     public Player(int x, int y, int lives) {
         this.x = x;
         this.y = y;
         this.lives = lives;
 
-        this.velosity = 5;
+        this.velosity = 8;
         this.moovingLeft = false;
         this.moovingRight = false;
         this.leftBound = new Rectangle(15,200);
@@ -62,11 +63,13 @@ public class Player {
          this.leftHit = false;
          this.rightHit = false;
          this.frontHit = false;
-        boolean isBlow = false;
-        ArrayList<Point> points = new ArrayList<Point>(
+         boolean isBlow = false;
+
+         this.points = new ArrayList<Point>(
                 Arrays.asList(car.firstLeftPoint, car.secondLeftPoint, car.thirdLeftPoint,
                         car.firstRightPoint, car.secondRightPoint, car.thirdRightPoint,
                         car.leftRearPoint, car.rightRearPoint));
+
         for (Point point : points) {
             if (this.leftBound.contains(point)) {
                 System.out.println("LeftttttttHittt");

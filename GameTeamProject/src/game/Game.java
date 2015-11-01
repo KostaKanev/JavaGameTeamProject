@@ -7,11 +7,14 @@ import graphics.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Game implements Runnable {
     public static final int WIDTH = 720;
     public static final int HEIGHT = 660;
     public static final int START_POSITION = 480 - 210;
+    private static int index = 0;
     private String title;
     private Thread thread;
     private boolean isRunning;
@@ -19,11 +22,11 @@ public class Game implements Runnable {
     private BufferStrategy bs;
     private Graphics g;
     private InputHandler ih;
-
+    private Random random;
     private SpriteSheet spriteSheet;
 
     private static Player player;
-    private OtherCars otherCar;
+    private ArrayList<OtherCars> otherCar;
     private Track track;
     private Scoreboard scoreboard;
 
@@ -31,15 +34,25 @@ public class Game implements Runnable {
     {
         this.title = title;
         this.isRunning = false;
+        this.random = new Random();
+
     }
 
     public void init(){
+        int randomNum = random.nextInt(296);
         this.display =  new Display(this.title, this.WIDTH, this.HEIGHT);
         this.ih = new InputHandler(this.display);
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
         this.track = new Track(START_POSITION,this.HEIGHT);
-        this.otherCar = new OtherCars(START_POSITION - 150, 10);
+        this.otherCar = new ArrayList<OtherCars>();
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar4, 4));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar3, 3));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.ambulance, 2));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar1, 5));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar2, 7));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.taxi, 1));
+
         this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
 
         this.scoreboard = new Scoreboard(0,0);
@@ -47,7 +60,7 @@ public class Game implements Runnable {
     }
 
     private void tick(){
-        this.otherCar.tick();
+        this.otherCar.stream().forEach(a -> a.tick());
         this.track.tick();
         this.player.tick();
         this.scoreboard.tick();
@@ -59,7 +72,7 @@ public class Game implements Runnable {
 
             this.player.x = 303;
         }
-        if(this.player.intersects(otherCar)){
+        if(this.player.intersects(this.otherCar.get(0))){
            this.player.lives--;
         }
         if(this.player.lives <= 0) {
@@ -81,11 +94,18 @@ public class Game implements Runnable {
         //START DRAWING
         this.track.render(g);
         this.player.render(g);
-        this.otherCar.render(g);
+
+        this.otherCar.get(index).render(g);
+        if(this.otherCar.get(index).y >= this.HEIGHT - 90){
+            index++;
+            if(index >= this.otherCar.size()){
+                index = 0;
+            }
+            this.otherCar.get(index).render(g);
+        }
+
         this.scoreboard.render(g);
-
         //END DRAWING
-
         this.bs.show();
         this.g.dispose();
     }
