@@ -39,7 +39,7 @@ public class Game implements Runnable {
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
         this.track = new Track(START_POSITION,this.HEIGHT);
-        this.otherCar = new OtherCars(START_POSITION, 10);
+        this.otherCar = new OtherCars(START_POSITION - 150, 10);
         this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
 
         this.scoreboard = new Scoreboard(0,0);
@@ -65,8 +65,8 @@ public class Game implements Runnable {
            this.player.lives--;
         }
         if(this.player.lives <= 0) {
-           // System.out.println("Dead");
-           // stop();
+            //System.out.println("Dead");
+            //stop();
         }
 
     }

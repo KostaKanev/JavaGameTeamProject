@@ -36,12 +36,12 @@ public class LifePoint {
         if(this.y >= Game.HEIGHT){
             this.y = dropPositionY;
             this.x = randomNum;
-            this.dropLife(g,randomNum,dropPositionY);
+            this.dropLife(g);
         }
     }
 
-    public void dropLife(Graphics g, int x, int y) {
+    public void dropLife(Graphics g) {
 
-        g.drawImage(this.lifeImage,x ,y ,null);
+        g.drawImage(this.lifeImage,this.x ,this.y ,null);
     }
 }

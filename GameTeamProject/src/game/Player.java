@@ -27,7 +27,7 @@ public class Player {
         this.y = y;
         this.lives = lives;
 
-        this.velosity = 8;
+        this.velosity = 5;
         moovingLeft = false;
         moovingRight = false;
         this.leftBound = new Rectangle(15,200);
@@ -63,6 +63,7 @@ public class Player {
          leftHit = false;
          rightHit = false;
          frontHit = false;
+        boolean isBlow = false;
         ArrayList<Point> points = new ArrayList<Point>(
                 Arrays.asList(car.firstLeftPoint, car.secondLeftPoint, car.thirdLeftPoint,
                         car.firstRightPoint, car.secondRightPoint, car.thirdRightPoint,
@@ -71,20 +72,23 @@ public class Player {
             if (this.leftBound.contains(point)) {
                 System.out.println("LeftttttttHittt");
                 leftHit = true;
+                isBlow = true;
             }
         }
         for (Point point : points) {
             if (this.rightBounding.contains(point)) {
                 System.out.println("RightHittt");
                 rightHit =true;
+                isBlow = true;
             }
         }
         for (Point point : points) {
             if (this.frontBounds.contains(point)) {
                 System.out.println("FrooontBUmmp");
                 frontHit = true;
+                isBlow = true;
             }
         }
-        return true;
+        return isBlow;
     }
 }

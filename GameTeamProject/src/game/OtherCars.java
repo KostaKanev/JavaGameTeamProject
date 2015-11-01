@@ -18,7 +18,7 @@ public class OtherCars {
     public OtherCars(int x, int y){
         this.x = x;
         this.y = y;
-        this.velosity = 2;
+        this.velosity = 4;
         this.playerImage = Assets.playerCar1;
     }
 
@@ -40,18 +40,22 @@ public class OtherCars {
 //        g.fillRect(this.x + 120,this.y + 230,2,2);
 //        g.fillRect(this.x + 60,this.y + 245,2,2);
 //        g.fillRect(this.x + 110,this.y + 245,2,2);
-
+        Random rand = new Random();
+        int randomNum = rand.nextInt((295 - 30) + 1) + 30;
+        int dropPositionY = -250;
 
         if(this.y >= Game.HEIGHT){
-            this.y = -210;
+            this.y = dropPositionY;
+            this.x = randomNum;
             this.createNewCar(g);
+
         }
     }
 
    public void createNewCar(Graphics g){
        g.drawImage(this.playerImage, this.x, this.y, null);
-
    }
+
     public void setBoundings(){
         firstLeftPoint = new Point(this.x+50,this.y+90);
         secondLeftPoint=new Point(this.x + 45, this.y + 165);
