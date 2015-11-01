@@ -44,7 +44,9 @@ public class OtherCars {
 //        g.fillRect(this.x + 60,this.y + 245,2,2);
 //        g.fillRect(this.x + 110,this.y + 245,2,2);
         this.random = new Random();
-        int randomNum = random.nextInt(296);
+        int min = 26;
+        int max = 300;
+        int randomNum = random.nextInt((max - min) + 1) + min;
 
         if(this.y >= Game.HEIGHT){
             this.y = DROP_POSITION_Y;
