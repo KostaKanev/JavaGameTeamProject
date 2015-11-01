@@ -14,7 +14,6 @@ public class LifePoint {
     private BufferedImage lifeImage;
 
     public LifePoint(int x, int y) {
-
         this.x = x;
         this.y = y;
         this.lifeImage = Assets.hearthImage;
@@ -22,13 +21,11 @@ public class LifePoint {
     }
 
     public void tick(){
-
         this.y += velocity;
     }
 
     public void render(Graphics g){
         g.drawImage(this.lifeImage, this.x, this.y, null);
-
         Random rand = new Random();
         int randomNum = rand.nextInt((303 - 25) + 1) + 25;
         int dropPositionY = -250;
@@ -41,7 +38,6 @@ public class LifePoint {
     }
 
     public void dropLife(Graphics g) {
-
         g.drawImage(this.lifeImage,this.x ,this.y ,null);
     }
 }

@@ -28,8 +28,8 @@ public class Player {
         this.lives = lives;
 
         this.velosity = 5;
-        moovingLeft = false;
-        moovingRight = false;
+        this.moovingLeft = false;
+        this.moovingRight = false;
         this.leftBound = new Rectangle(15,200);
         this.rightBounding = new Rectangle(15,200);
         this.frontBounds = new Rectangle(60,5);
@@ -37,15 +37,14 @@ public class Player {
     }
 
     public void tick() {
-        //this.y -= this.velosity;
         this.leftBound.setBounds(this.x + 40, this.y + 80,15, 150);
         this.rightBounding.setBounds(this.x+105,this.y+80,15,150);
         this.frontBounds.setBounds(this.x + 45, this.y + 70, 60, 10);
-        if (moovingLeft && !leftHit) {
-            this.x -= velosity;
+        if (this.moovingLeft && !this.leftHit) {
+            this.x -= this.velosity;
         }
-        if (moovingRight && !rightHit) {
-            this.x += velosity;
+        if (this.moovingRight && !this.rightHit) {
+            this.x += this.velosity;
         }
     }
 
@@ -60,9 +59,9 @@ public class Player {
     }
 
     public boolean intersects(OtherCars car) {
-         leftHit = false;
-         rightHit = false;
-         frontHit = false;
+         this.leftHit = false;
+         this.rightHit = false;
+         this.frontHit = false;
         boolean isBlow = false;
         ArrayList<Point> points = new ArrayList<Point>(
                 Arrays.asList(car.firstLeftPoint, car.secondLeftPoint, car.thirdLeftPoint,

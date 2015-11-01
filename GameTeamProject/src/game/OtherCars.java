@@ -7,14 +7,17 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class OtherCars {
-    public int x;
-    public int y;
-    public int velosity;
+    private final int DROP_POSITION_Y = -250;
+
+    private int x;
+    private int y;
+    private int velosity;
     private BufferedImage playerImage;
     private Random random;
     public Point firstLeftPoint,secondLeftPoint ,thirdLeftPoint
                  ,firstRightPoint,secondRightPoint,thirdRightPoint,
                  leftRearPoint,rightRearPoint;
+
     public OtherCars(int x, int y){
         this.x = x;
         this.y = y;
@@ -40,12 +43,11 @@ public class OtherCars {
 //        g.fillRect(this.x + 120,this.y + 230,2,2);
 //        g.fillRect(this.x + 60,this.y + 245,2,2);
 //        g.fillRect(this.x + 110,this.y + 245,2,2);
-        Random rand = new Random();
-        int randomNum = rand.nextInt((295 - 30) + 1) + 30;
-        int dropPositionY = -250;
+        this.random = new Random();
+        int randomNum = random.nextInt(296);
 
         if(this.y >= Game.HEIGHT){
-            this.y = dropPositionY;
+            this.y = DROP_POSITION_Y;
             this.x = randomNum;
             this.createNewCar(g);
 

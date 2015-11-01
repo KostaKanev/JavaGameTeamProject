@@ -47,8 +47,6 @@ public class Game implements Runnable {
     }
 
     private void tick(){
-       // this.y -= 5;//check move
-
         this.otherCar.tick();
         this.track.tick();
         this.player.tick();
@@ -80,20 +78,7 @@ public class Game implements Runnable {
         }
         this.g = this.bs.getDrawGraphics();
 
-
         //START DRAWING
-        //this.g.clearRect(0,0,this.width,this.height);
-        //this.g.drawImage(ImgLoader.loadImage("/img/bkg.jpg"),0,0,null);
-        //this.g.drawImage(this.player, 100, 100, null);
-        //this.g.drawImage(Assets.playerCar1,x,y,null);
-        //this.g.drawImage(Assets.playerCar2,x + 45,y,null);
-        //this.g.drawImage(Assets.ambulance,x + 30,y,null);
-        //this.g.drawImage(Assets.policeCar,x + 15,y,null);
-        //this.g.drawImage(Assets.taxi,x + 30,y,null);
-        //this.g.drawImage(Assets.playerCar4,x + 25,y,null);
-        //this.g.drawImage(Assets.playerCar5,x,y,null);
-        //this.g.drawImage(Assets.playerCar6,x + 10,y,null);
-        //this.g.drawImage(Assets.playerCar7,x + 25,y,null);
         this.track.render(g);
         this.player.render(g);
         this.otherCar.render(g);
