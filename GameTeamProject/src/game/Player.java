@@ -25,7 +25,7 @@ public class Player {
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        this.blood = 1100;
+        this.blood = 500;
         this.width = 88;
         this.height = 168;
 

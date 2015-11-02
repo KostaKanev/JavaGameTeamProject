@@ -13,7 +13,7 @@ public class Game implements Runnable {
     public static final int WIDTH = 720;
     public static final int HEIGHT = 660;
     public static final int START_POSITION = 450;
-    private   final int LEFT_BORDER = 55;
+    private final int LEFT_BORDER = 55;
     private final int RIGHT_BORDER = 332;
     private static int index = 0;
     private String title;
@@ -29,6 +29,8 @@ public class Game implements Runnable {
     private ArrayList<OtherCars> otherCar;
     private Track track;
     private Scoreboard scoreboard;
+    private boolean isHit = false;
+    private boolean isDie = false;
 
     public Game(String title) {
         this.title = title;
@@ -54,7 +56,7 @@ public class Game implements Runnable {
         this.scoreboard = new Scoreboard(0,0);
 
     }
-    boolean isHit = false;
+
     private void tick(){
         this.otherCar.stream().forEach(a -> a.tick());
         this.track.tick();
@@ -81,6 +83,8 @@ public class Game implements Runnable {
         }
 
         if(this.player.blood <= 0) {
+            isDie = true;
+
             System.out.println("Dead");
             stop();
         }
@@ -111,7 +115,11 @@ public class Game implements Runnable {
 
         if(isHit == true){
             g.drawImage(ImgLoader.loadImage("/img/hit.png"), Player.x + 20, Player.y + 40, 90, 90, null);
+            g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
             isHit = false;
+        }
+        if(isDie == true){
+            g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
         }
 
         this.scoreboard.render(g);
