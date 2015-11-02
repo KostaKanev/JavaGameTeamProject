@@ -7,40 +7,37 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Player {
-    public int x;
-    public int y;
+    public static int x;
+    public static int y;
+    private int width;
+    private int height;
     public static int blood;
     public int velosity;
-    public Rectangle leftBound;
-    public Rectangle rightBounding;
-    public Rectangle frontBounds;
-    public boolean leftHit;
+
+    public static boolean leftHit;
     public static boolean rightHit;
     public static boolean frontHit;
     public static boolean moovingLeft;
     public static boolean moovingRight;
 
     private BufferedImage playerImage;
-    private ArrayList<Point> points;
 
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        this.blood = 2000;
+        this.blood = 1100;
+        this.width = 88;
+        this.height = 168;
 
         this.velosity = 5;
         this.moovingLeft = false;
         this.moovingRight = false;
-        this.leftBound = new Rectangle(15,200);
-        this.rightBounding = new Rectangle(15,200);
-        this.frontBounds = new Rectangle(60,5);
+
         this.playerImage = Assets.policeCar;
     }
 
     public void tick() {
-        this.leftBound.setBounds(this.x + 40, this.y + 80,15, 150);
-        this.rightBounding.setBounds(this.x+105,this.y+80,15,150);
-        this.frontBounds.setBounds(this.x + 45, this.y + 70, 60, 10);
+
         if (this.moovingLeft && !this.leftHit) {
             this.x -= this.velosity;
         }
@@ -52,44 +49,39 @@ public class Player {
     public void render(Graphics g) {
 
         g.drawImage(this.playerImage, this.x, this.y, null);
-        //Just  printing the bounds
-//        g.setColor(Color.blue);
-//        g.fillRect(this.x + 40, this.y + 80, 5, 150);
-//        g.fillRect(this.x+105,this.y+80,5,150);
-//        g.fillRect(this.x + 45, this.y + 70, 60, 5);
     }
 
     public boolean intersects(OtherCars car) {
+        int pointX1Player = this.x;
+        int pointX1OtherCar = car.x;
+        int pointX2OtherCar = car.x + car.width;
+        int pointX2Player = this.x + this.width;
+        int pointY1Player = this.y;
+        int pointY1OtherCar = car.y;
+        int pointY2OtherCar = car.y + car.height;
+        int pointY2Player = this.y + this.height;
          this.leftHit = false;
          this.rightHit = false;
          this.frontHit = false;
          boolean isBlow = false;
 
-         this.points = new ArrayList<Point>(
-                Arrays.asList(car.firstLeftPoint, car.secondLeftPoint, car.thirdLeftPoint,
-                        car.firstRightPoint, car.secondRightPoint, car.thirdRightPoint,
-                        car.leftRearPoint, car.rightRearPoint));
+        if((pointY2OtherCar >= pointY1Player && pointY1OtherCar <= pointY2Player) &&
+                (pointX1Player <= pointX2OtherCar && pointX2Player >= pointX2OtherCar)){
+            this.leftHit = true;
+            isBlow = true;
+            System.out.println("Left");
+            car.x -= 20;
+            this.x += 9;
 
-        for (Point point : points) {
-            if (this.leftBound.contains(point)) {
-                System.out.println("LeftttttttHittt");
-                leftHit = true;
-                isBlow = true;
-            }
         }
-        for (Point point : points) {
-            if (this.rightBounding.contains(point)) {
-                System.out.println("RightHittt");
-                rightHit =true;
-                isBlow = true;
-            }
-        }
-        for (Point point : points) {
-            if (this.frontBounds.contains(point)) {
-                System.out.println("FrooontBUmmp");
-                frontHit = true;
-                isBlow = true;
-            }
+        if((pointY2OtherCar >= pointY1Player && pointY1OtherCar <= pointY2Player) &&
+                (pointX2Player >= pointX1OtherCar && pointX1Player <= pointX1OtherCar)){
+            this.rightHit = true;
+            isBlow = true;
+            System.out.println("Right");
+            car.x += 20;
+            this.x -= 9;
+
         }
         return isBlow;
     }

@@ -38,6 +38,7 @@ public class LifePoint {
     }
 
     public void dropLife(Graphics g) {
+
         g.drawImage(this.lifeImage,this.x ,this.y ,null);
     }
 }

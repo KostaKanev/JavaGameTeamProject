@@ -17,7 +17,6 @@ public class Display extends Canvas{
         this.width = width;
         this.height = height;
         this.title = title;
-
         createFrame();
     }
 
