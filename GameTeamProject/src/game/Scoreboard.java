@@ -7,7 +7,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Scoreboard {
-
     public int x;
     public int y;;
 
@@ -22,6 +21,7 @@ public class Scoreboard {
 
     public void render(Graphics g) {
         g.drawImage(Assets.scoreboardImage,475,0,null);
+
         for (int i = 0; i < 5 ; i++) {
             g.drawImage(Assets.nineScore,480 + (45 * i),250,null);
         }

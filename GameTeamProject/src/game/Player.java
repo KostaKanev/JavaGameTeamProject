@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class Player {
     public int x;
     public int y;
-    public int lives;
+    public static int blood;
     public int velosity;
     public Rectangle leftBound;
     public Rectangle rightBounding;
@@ -23,12 +23,12 @@ public class Player {
     private BufferedImage playerImage;
     private ArrayList<Point> points;
 
-    public Player(int x, int y, int lives) {
+    public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        this.lives = lives;
+        this.blood = 2000;
 
-        this.velosity = 8;
+        this.velosity = 5;
         this.moovingLeft = false;
         this.moovingRight = false;
         this.leftBound = new Rectangle(15,200);

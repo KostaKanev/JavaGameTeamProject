@@ -17,13 +17,12 @@ public class Track {
         this.x = x;
         this.y = y;
 
-        this.velosity = 10;
+        this.velosity = 13;
 
         this.trackImage = ImgLoader.loadImage("/img/bkg.jpg");
     }
 
     public void tick(){
-
         this.y += this.velosity;
 
     }

@@ -18,10 +18,10 @@ public class OtherCars {
                  ,firstRightPoint,secondRightPoint,thirdRightPoint,
                  leftRearPoint,rightRearPoint;
 
-    public OtherCars(int x, int y, BufferedImage playerImage, int velosity){
+    public OtherCars(int x, int y, BufferedImage playerImage){
         this.x = x;
         this.y = y;
-        this.velosity = velosity;
+        this.velosity = 4;
         this.playerImage = playerImage;
     }
 

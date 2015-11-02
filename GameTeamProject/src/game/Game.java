@@ -45,20 +45,20 @@ public class Game implements Runnable {
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/car.png"));
         Assets.init();
         this.track = new Track(START_POSITION,this.HEIGHT);
-        this.otherCar = new ArrayList<OtherCars>();
-        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar4, 4));
-        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar3, 3));
-        otherCar.add(new OtherCars(randomNum, 0, Assets.ambulance, 2));
-        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar1, 5));
-        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar2, 7));
-        otherCar.add(new OtherCars(randomNum, 0, Assets.taxi, 1));
+        this.otherCar = new ArrayList<>();
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar7));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar2));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.taxi));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar3));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar1));
+        otherCar.add(new OtherCars(randomNum, 0, Assets.playerCar5));
 
-        this.player = new Player(START_POSITION + 10, this.HEIGHT - 250, 1);
+        this.player = new Player(START_POSITION + 10, this.HEIGHT - 250);
 
         this.scoreboard = new Scoreboard(0,0);
 
     }
-
+    boolean isHit = false;
     private void tick(){
         this.otherCar.stream().forEach(a -> a.tick());
         this.track.tick();
@@ -72,12 +72,19 @@ public class Game implements Runnable {
 
             this.player.x = 303;
         }
-        if(this.player.intersects(this.otherCar.get(0))){
-           this.player.lives--;
+        if(this.player.intersects(this.otherCar.get(0)) ||
+                this.player.intersects(this.otherCar.get(1))||
+                this.player.intersects(this.otherCar.get(2))||
+                this.player.intersects(this.otherCar.get(3))||
+                this.player.intersects(this.otherCar.get(4))||
+                this.player.intersects(this.otherCar.get(5))){
+           this.player.blood--;
+          isHit = true;
         }
-        if(this.player.lives <= 0) {
-            //System.out.println("Dead");
-            //stop();
+
+        if(this.player.blood <= 0) {
+            System.out.println("Dead");
+            stop();
         }
 
     }
@@ -94,14 +101,19 @@ public class Game implements Runnable {
         //START DRAWING
         this.track.render(g);
         this.player.render(g);
-
         this.otherCar.get(index).render(g);
+
         if(this.otherCar.get(index).y >= this.HEIGHT - 90){
             index++;
             if(index >= this.otherCar.size()){
                 index = 0;
             }
             this.otherCar.get(index).render(g);
+        }
+
+        if(isHit == true){
+            g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, this.WIDTH, this.HEIGHT, null);
+            isHit = false;
         }
 
         this.scoreboard.render(g);

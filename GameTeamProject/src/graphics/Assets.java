@@ -8,7 +8,7 @@ public class Assets {
     private static final int height = 350;
 
     public static BufferedImage playerCar1, playerCar2, playerCar3, ambulance, policeCar, taxi, playerCar4,
-            playerCar5, playerCar6, playerCar7, animPoliceCar1, animPoliceCar2, animPoliceCar3;
+            playerCar5, playerCar6, playerCar7;
 
     public static final int scoreDigitWidth = 52;
     public static final int scoreDigitHeight = 60 , livesDigitHeight = 101;
@@ -18,6 +18,7 @@ public class Assets {
             fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives, score;
     public static BufferedImage hearthImage;
     public static BufferedImage scoreboardImage;
+
 
     public  static void init(){
         SpriteSheet spriteSheet = new SpriteSheet(
@@ -34,7 +35,6 @@ public class Assets {
         playerCar5 = spriteSheet.crop(width*9 + width/2,0,width,height);
         playerCar6 = spriteSheet.crop(width*9 + width/2 + 10,height,width,height);
         playerCar7 = spriteSheet.crop(width*8 + width/3,height,width,height);
-
         //All digits from "/img/digitsImg.png"
         SpriteSheet digitsSprite = new SpriteSheet(
                 ImgLoader.loadImage("/img/digitsImg.png")
@@ -45,13 +45,13 @@ public class Assets {
         zeroScore = digitsSprite.crop(scoreDigitsY,75, scoreDigitWidth, scoreDigitHeight);
         oneScore = digitsSprite.crop(scoreDigitsY + multiplier,75, scoreDigitWidth, scoreDigitHeight);
         twoScore = digitsSprite.crop(scoreDigitsY + multiplier * 2,75, scoreDigitWidth, scoreDigitHeight);
-        threeScore = digitsSprite.crop(scoreDigitsY + multiplier * 3,75, scoreDigitWidth, scoreDigitHeight);
-        fourScore = digitsSprite.crop(scoreDigitsY + multiplier * 4,75, scoreDigitWidth, scoreDigitHeight);
-        fiveScore = digitsSprite.crop(scoreDigitsY + multiplier * 5,75, scoreDigitWidth, scoreDigitHeight);
-        sixScore = digitsSprite.crop(scoreDigitsY + multiplier * 6,75, scoreDigitWidth, scoreDigitHeight);
-        sevenScore = digitsSprite.crop(scoreDigitsY + multiplier * 7,75, scoreDigitWidth, scoreDigitHeight);
-        eightScore = digitsSprite.crop(scoreDigitsY + multiplier * 8,75, scoreDigitWidth, scoreDigitHeight);
-        nineScore = digitsSprite.crop(scoreDigitsY + multiplier * 9,75, scoreDigitWidth, scoreDigitHeight);
+       threeScore = digitsSprite.crop(scoreDigitsY + multiplier * 3,75, scoreDigitWidth, scoreDigitHeight);
+       fourScore = digitsSprite.crop(scoreDigitsY + multiplier * 4,75, scoreDigitWidth, scoreDigitHeight);
+       fiveScore = digitsSprite.crop(scoreDigitsY + multiplier * 5,75, scoreDigitWidth, scoreDigitHeight);
+       sixScore = digitsSprite.crop(scoreDigitsY + multiplier * 6,75, scoreDigitWidth, scoreDigitHeight);
+       sevenScore = digitsSprite.crop(scoreDigitsY + multiplier * 7,75, scoreDigitWidth, scoreDigitHeight);
+       eightScore = digitsSprite.crop(scoreDigitsY + multiplier * 8,75, scoreDigitWidth, scoreDigitHeight);
+       nineScore = digitsSprite.crop(scoreDigitsY + multiplier * 9,75, scoreDigitWidth, scoreDigitHeight);
 
         //Digits for Lives
         int liveDigitsY = 462;
@@ -73,9 +73,5 @@ public class Assets {
         hearthImage = ImgLoader.loadImage("/img/heart.png");
         score = ImgLoader.loadImage("/img/score5.png");
 
-        //players for animation
-      /*  animPoliceCar1 = spriteSheet.crop(0,height,width,height);
-        animPoliceCar2 = spriteSheet.crop(width + width/3,height,width,height);
-        animPoliceCar3 = spriteSheet.crop(width *3,height,width,height);*/
     }
 }
