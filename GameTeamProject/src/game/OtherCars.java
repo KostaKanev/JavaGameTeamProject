@@ -7,8 +7,8 @@ public class OtherCars {
     private final int DROP_POSITION_Y = -250;
     public static int x;
     public static int y;
-    public int width;
-    public int height;
+    public static int width;
+    public static int height;
     private int velosity;
     private BufferedImage playerImage;
     private int supplement = 80;
@@ -18,7 +18,7 @@ public class OtherCars {
         this.y = y;
         this.velosity = 3;
         this.playerImage = playerImage;
-        this.width = 88;
+        this.width = 85;
         this.height = 168;
     }
 

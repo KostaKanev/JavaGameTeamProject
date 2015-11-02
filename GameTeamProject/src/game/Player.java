@@ -26,7 +26,7 @@ public class Player {
         this.x = x;
         this.y = y;
         this.blood = 500;
-        this.width = 88;
+        this.width = 85;
         this.height = 168;
 
         this.velosity = 5;

@@ -115,11 +115,8 @@ public class Game implements Runnable {
 
         if(isHit == true){
             g.drawImage(ImgLoader.loadImage("/img/hit.png"), Player.x + 20, Player.y + 40, 90, 90, null);
-            g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
+           // g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
             isHit = false;
-        }
-        if(isDie == true){
-            g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
         }
 
         this.scoreboard.render(g);
