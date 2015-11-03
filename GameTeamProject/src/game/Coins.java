@@ -18,7 +18,7 @@ public class Coins {
 
     public Coins() {
         this.x = 150;
-        this.y = 180;
+        this.y = 0;
         this.width = 100;
         this.height = 67;
         this.image = Assets.coins;
@@ -34,16 +34,16 @@ public class Coins {
         g.drawImage(this.image,this.x ,this.y , null);
 
         int newX = random.nextInt((60 + 150) + 1) + 60;
-        int newY = random.nextInt((0 + 350)+ 1) + 0;
+        //int newY = random.nextInt((0 + 350)+ 1) + 0;
 
-        if(this.y >= Game.HEIGHT - 70|| Player.leftHit || Player.rightHit){
+        if(this.y >= Game.HEIGHT - 40|| Player.leftHit || Player.rightHit || Player.frontHit){
             this.x = newX;
-            this.y = newY;
+            this.y = 0;
             this.createNewCoin(g);
         }
     }
 
-    public void createNewCoin(Graphics g){
+    public void createNewCoin(Graphics g) {
         g.drawImage(this.image, this.x, this.y, null);
     }
 }

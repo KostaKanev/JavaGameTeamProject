@@ -31,7 +31,6 @@ public class Game implements Runnable {
     private Scoreboard scoreboard;
     private Coins coins;
     private boolean isHit = false;
-    private boolean isDie = false;
 
     public Game(String title) {
         this.title = title;
@@ -79,20 +78,18 @@ public class Game implements Runnable {
                 this.player.intersects(this.otherCar.get(5))||
                 this.player.intersects(this.otherCar.get(6))
                 ){
+            coins.tick();
             this.player.blood -= 10;
             isHit = true;
         }
 
         if(this.player.blood <= 0) {
-            isDie = true;
-
             System.out.println("Dead");
             stop();
         }
         this.scoreboard.tick();
         this.coins.tick();
         if(player.intersectsCoins(this.coins)){
-            this.coins.x += 700;
             Player.score += 10;
             System.out.println(Player.score);
         }
