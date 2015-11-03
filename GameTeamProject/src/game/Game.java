@@ -29,6 +29,7 @@ public class Game implements Runnable {
     private ArrayList<OtherCars> otherCar;
     private Track track;
     private Scoreboard scoreboard;
+    private Coins coins;
     private boolean isHit = false;
     private boolean isDie = false;
 
@@ -47,14 +48,14 @@ public class Game implements Runnable {
         otherCar.add(new OtherCars(70, 0, Assets.taxi));
         otherCar.add(new OtherCars(70, 0, Assets.playerCar1));
         otherCar.add(new OtherCars(70, 0, Assets.blackViper));
-        otherCar.add(new OtherCars(70, 0, Assets.audi));
+        otherCar.add(new OtherCars(70, 0, Assets.taxi));
         otherCar.add(new OtherCars(70, 0, Assets.playerCar1));
         otherCar.add(new OtherCars(70, 0, Assets.blackViper));
         otherCar.add(new OtherCars(70, 0, Assets.audi));
 
         this.player = new Player(200, this.HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0);
-
+        this.coins = new Coins(100, 50);
     }
 
     private void tick(){
@@ -62,6 +63,7 @@ public class Game implements Runnable {
         this.track.tick();
         this.player.tick();
         this.scoreboard.tick();
+        this.coins.tick();
 
         if (this.player.x <= this.LEFT_BORDER) {
 
@@ -112,7 +114,7 @@ public class Game implements Runnable {
             }
             this.otherCar.get(index).render(g);
         }
-
+        this.coins.render(g);
         if(isHit == true){
             g.drawImage(ImgLoader.loadImage("/img/hit.png"), Player.x + 20, Player.y + 40, 90, 90, null);
            // g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
