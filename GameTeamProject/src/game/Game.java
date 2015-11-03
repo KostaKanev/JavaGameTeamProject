@@ -29,7 +29,7 @@ public class Game implements Runnable {
     private ArrayList<OtherCars> otherCar;
     private Track track;
     private Scoreboard scoreboard;
-    private ArrayList<Coins> coins;
+    private Coins coins;
     private boolean isHit = false;
     private boolean isDie = false;
 
@@ -45,33 +45,24 @@ public class Game implements Runnable {
         Assets.init();
         this.track = new Track(START_POSITION, this.HEIGHT);
         this.otherCar = new ArrayList<>();
-        otherCar.add(new OtherCars(70, 0, Assets.taxi));
-        otherCar.add(new OtherCars(70, 0, Assets.playerCar1));
-        otherCar.add(new OtherCars(70, 0, Assets.blackViper));
-        otherCar.add(new OtherCars(70, 0, Assets.taxi));
-        otherCar.add(new OtherCars(70, 0, Assets.playerCar1));
-        otherCar.add(new OtherCars(70, 0, Assets.blackViper));
-        otherCar.add(new OtherCars(70, 0, Assets.audi));
+        otherCar.add(new OtherCars(Assets.taxi));
+        otherCar.add(new OtherCars(Assets.playerCar1));
+        otherCar.add(new OtherCars(Assets.blackViper));
+        otherCar.add(new OtherCars(Assets.taxi));
+        otherCar.add(new OtherCars(Assets.playerCar1));
+        otherCar.add(new OtherCars(Assets.blackViper));
+        otherCar.add(new OtherCars(Assets.audi));
 
         this.player = new Player(200, this.HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0);
-        this.coins = new ArrayList<>();
-        coins.add(new Coins());
-        coins.add(new Coins());
-        coins.add(new Coins());
-        coins.add(new Coins());
-        coins.add(new Coins());
-        coins.add(new Coins());
-        coins.add(new Coins());
+        this.coins = new Coins();
+
     }
 
     private void tick(){
         this.otherCar.stream().forEach(a -> a.tick());
         this.track.tick();
         this.player.tick();
-        this.scoreboard.tick();
-        this.coins.stream().forEach(c -> c.tick());
-
         if (this.player.x <= this.LEFT_BORDER) {
 
             this.player.x = this.LEFT_BORDER;
@@ -79,6 +70,7 @@ public class Game implements Runnable {
 
             this.player.x = this.RIGHT_BORDER;
         }
+
         if(this.player.intersects(this.otherCar.get(0)) ||
                 this.player.intersects(this.otherCar.get(1))||
                 this.player.intersects(this.otherCar.get(2))||
@@ -87,8 +79,8 @@ public class Game implements Runnable {
                 this.player.intersects(this.otherCar.get(5))||
                 this.player.intersects(this.otherCar.get(6))
                 ){
-           this.player.blood -= 10;
-          isHit = true;
+            this.player.blood -= 10;
+            isHit = true;
         }
 
         if(this.player.blood <= 0) {
@@ -97,7 +89,13 @@ public class Game implements Runnable {
             System.out.println("Dead");
             stop();
         }
-
+        this.scoreboard.tick();
+        this.coins.tick();
+        if(player.intersectsCoins(this.coins)){
+            this.coins.x += 700;
+            Player.score += 10;
+            System.out.println(Player.score);
+        }
     }
 
     private void render(){
@@ -113,20 +111,13 @@ public class Game implements Runnable {
         this.track.render(g);
         this.player.render(g);
         this.otherCar.get(index).render(g);
-        this.coins.get(index).render(g);
+
         if(this.otherCar.get(index).y >= this.HEIGHT - 60){
             index++;
             if(index >= this.otherCar.size()){
                 index = 0;
             }
             this.otherCar.get(index).render(g);
-        }
-        if(this.coins.get(index).y >= this.HEIGHT){
-            index++;
-            if(index >= this.coins.size()){
-                index = 0;
-            }
-            this.coins.get(index).render(g);
         }
 
         if(isHit == true){
@@ -136,6 +127,7 @@ public class Game implements Runnable {
         }
 
         this.scoreboard.render(g);
+        this.coins.render(g);
         //END DRAWING
         this.bs.show();
         this.g.dispose();

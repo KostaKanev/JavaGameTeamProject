@@ -13,9 +13,9 @@ public class OtherCars {
     private BufferedImage playerImage;
     private int supplement = 80;
 
-    public OtherCars(int x, int y, BufferedImage playerImage){
-        this.x = x;
-        this.y = y;
+    public OtherCars(BufferedImage playerImage){
+        this.x = 70;
+
         this.velosity = 3;
         this.playerImage = playerImage;
         this.width = 85;

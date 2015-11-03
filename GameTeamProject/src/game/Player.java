@@ -12,6 +12,7 @@ public class Player {
     private int width;
     private int height;
     public static int blood;
+    public static int score;
     public int velosity;
 
     public static boolean leftHit;
@@ -31,7 +32,7 @@ public class Player {
         this.velosity = 5;
         this.moovingLeft = false;
         this.moovingRight = false;
-
+        this.score = 0;
         this.playerImage = Assets.policeCar;
     }
 
@@ -81,6 +82,37 @@ public class Player {
             car.x += 20;
             this.x -= 9;
 
+        }
+        return isBlow;
+    }
+
+    public boolean intersectsCoins(Coins coin) {
+        int pointX1Player = this.x;
+        int pointX1OtherCar = coin.x;
+        int pointX2OtherCar = coin.x + coin.width;
+        int pointX2Player = this.x + this.width;
+        int pointY1Player = this.y;
+        int pointY1OtherCar = coin.y;
+        int pointY2OtherCar = coin.y + coin.height;
+        int pointY2Player = this.y + this.height;
+        this.leftHit = false;
+        this.rightHit = false;
+        this.frontHit = false;
+        boolean isBlow = false;
+
+        if((pointY2OtherCar >= pointY1Player && pointY1OtherCar <= pointY2Player) &&
+                (pointX1Player <= pointX2OtherCar && pointX2Player >= pointX2OtherCar)){
+            this.leftHit = true;
+            isBlow = true;
+            System.out.println("Left");
+
+        }
+        if((pointY2OtherCar >= pointY1Player && pointY1OtherCar <= pointY2Player) &&
+                (pointX2Player >= pointX1OtherCar && pointX1Player <= pointX1OtherCar)){
+            this.rightHit = true;
+            isBlow = true;
+            System.out.println("Right");
+            coin.y -= 320;
         }
         return isBlow;
     }
