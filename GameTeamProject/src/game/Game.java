@@ -89,7 +89,7 @@ public class Game implements Runnable {
         this.scoreboard.tick();
         this.coins.tick();
         if(player.intersectsCoins(this.coins)){
-            Player.score += 10;
+            Player.score += 1;
             System.out.println(Player.score);
         }
     }
@@ -129,6 +129,8 @@ public class Game implements Runnable {
         this.bs.show();
         this.g.dispose();
     }
+
+
 
     @Override
     public void run() {

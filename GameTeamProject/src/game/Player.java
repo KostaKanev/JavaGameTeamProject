@@ -24,6 +24,7 @@ public class Player {
     public static boolean moovingLeft;
     public static boolean moovingRight;
 
+
     private BufferedImage playerImage;
 
     public Player(int x, int y) {
