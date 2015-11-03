@@ -42,7 +42,6 @@ public class OtherCars {
 
    public void createNewCar(Graphics g){
        g.drawImage(this.playerImage, this.x, this.y, null);
-
    }
 
 }

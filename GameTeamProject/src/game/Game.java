@@ -29,7 +29,7 @@ public class Game implements Runnable {
     private ArrayList<OtherCars> otherCar;
     private Track track;
     private Scoreboard scoreboard;
-    private Coins coins;
+    private ArrayList<Coins> coins;
     private boolean isHit = false;
     private boolean isDie = false;
 
@@ -55,7 +55,14 @@ public class Game implements Runnable {
 
         this.player = new Player(200, this.HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0);
-        this.coins = new Coins(100, 50);
+        this.coins = new ArrayList<>();
+        coins.add(new Coins());
+        coins.add(new Coins());
+        coins.add(new Coins());
+        coins.add(new Coins());
+        coins.add(new Coins());
+        coins.add(new Coins());
+        coins.add(new Coins());
     }
 
     private void tick(){
@@ -63,7 +70,7 @@ public class Game implements Runnable {
         this.track.tick();
         this.player.tick();
         this.scoreboard.tick();
-        this.coins.tick();
+        this.coins.stream().forEach(c -> c.tick());
 
         if (this.player.x <= this.LEFT_BORDER) {
 
@@ -106,7 +113,7 @@ public class Game implements Runnable {
         this.track.render(g);
         this.player.render(g);
         this.otherCar.get(index).render(g);
-
+        this.coins.get(index).render(g);
         if(this.otherCar.get(index).y >= this.HEIGHT - 60){
             index++;
             if(index >= this.otherCar.size()){
@@ -114,7 +121,14 @@ public class Game implements Runnable {
             }
             this.otherCar.get(index).render(g);
         }
-        this.coins.render(g);
+        if(this.coins.get(index).y >= this.HEIGHT){
+            index++;
+            if(index >= this.coins.size()){
+                index = 0;
+            }
+            this.coins.get(index).render(g);
+        }
+
         if(isHit == true){
             g.drawImage(ImgLoader.loadImage("/img/hit.png"), Player.x + 20, Player.y + 40, 90, 90, null);
            // g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
