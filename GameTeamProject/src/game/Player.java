@@ -18,6 +18,9 @@ public class Player {
     public static boolean leftHit;
     public static boolean rightHit;
     public static boolean frontHit;
+    public static boolean leftHitCar;
+    public static boolean rightHitCar;
+    public static boolean frontHitCar;
     public static boolean moovingLeft;
     public static boolean moovingRight;
 
@@ -35,6 +38,14 @@ public class Player {
         this.moovingRight = false;
         this.score = 0;
         this.playerImage = Assets.policeCar;
+
+        this.leftHit = false;
+        this.rightHit = false;
+        this.frontHit = false;
+
+        this.leftHitCar = false;
+        this.rightHitCar = false;
+        this.frontHitCar = false;
         this.coins = new Coins();
     }
 
@@ -62,14 +73,12 @@ public class Player {
         int pointY1OtherCar = car.y;
         int pointY2OtherCar = car.y + car.height;
         int pointY2Player = this.y + this.height;
-         this.leftHit = false;
-         this.rightHit = false;
-         this.frontHit = false;
-         boolean isBlow = false;
+
+        boolean isBlow = false;
 
         if((pointY2OtherCar >= pointY1Player && pointY1OtherCar <= pointY2Player) &&
                 (pointX1Player <= pointX2OtherCar && pointX2Player >= pointX2OtherCar)){
-            this.leftHit = true;
+            this.leftHitCar = true;
             isBlow = true;
             System.out.println("Left");
             car.x -= 20;
@@ -78,7 +87,7 @@ public class Player {
         }
         if((pointY2OtherCar >= pointY1Player && pointY1OtherCar <= pointY2Player) &&
                 (pointX2Player >= pointX1OtherCar && pointX1Player <= pointX1OtherCar)){
-            this.rightHit = true;
+            this.rightHitCar = true;
             isBlow = true;
             System.out.println("Right");
             car.x += 20;
@@ -119,7 +128,7 @@ public class Player {
         if(pointY1Player == pointY2Coin || pointY1Player < pointY2Coin && pointY1Coin < pointY1Player){
             isBlow = true;
             this.frontHit = true;
-            System.out.println("****");
+            System.out.println("Front");
         }
         return isBlow;
     }

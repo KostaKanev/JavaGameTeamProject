@@ -78,7 +78,6 @@ public class Game implements Runnable {
                 this.player.intersects(this.otherCar.get(5))||
                 this.player.intersects(this.otherCar.get(6))
                 ){
-            coins.tick();
             this.player.blood -= 10;
             isHit = true;
         }
@@ -126,6 +125,7 @@ public class Game implements Runnable {
         this.scoreboard.render(g);
         this.coins.render(g);
         //END DRAWING
+
         this.bs.show();
         this.g.dispose();
     }

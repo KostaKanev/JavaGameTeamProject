@@ -1,5 +1,7 @@
 package game;
 
+import graphics.Assets;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -15,7 +17,6 @@ public class OtherCars {
 
     public OtherCars(BufferedImage playerImage){
         this.x = 70;
-
         this.velosity = 3;
         this.playerImage = playerImage;
         this.width = 85;
@@ -23,7 +24,6 @@ public class OtherCars {
     }
 
     public void tick(){
-
         this.y += this.velosity;
         this.supplement += 60;
         if(supplement >= 400){
@@ -33,6 +33,7 @@ public class OtherCars {
 
     public void render(Graphics g){
         g.drawImage(this.playerImage, this.x, this.y, null);
+
         if(this.y >= Game.HEIGHT){
             this.y = DROP_POSITION_Y;
             this.x = supplement;
@@ -43,5 +44,4 @@ public class OtherCars {
    public void createNewCar(Graphics g){
        g.drawImage(this.playerImage, this.x, this.y, null);
    }
-
 }

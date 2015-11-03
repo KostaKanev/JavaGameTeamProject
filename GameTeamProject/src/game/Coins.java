@@ -23,7 +23,7 @@ public class Coins {
         this.height = 67;
         this.image = Assets.coins;
         this.random = new Random();
-        this.velosity = 8;
+        this.velosity = 6;
     }
     public void tick(){
         this.y += velosity;
@@ -34,11 +34,11 @@ public class Coins {
         g.drawImage(this.image,this.x ,this.y , null);
 
         int newX = random.nextInt((60 + 150) + 1) + 60;
-        //int newY = random.nextInt((0 + 350)+ 1) + 0;
+        int newY = random.nextInt((-44 + 90)+ 1) + -44;
 
         if(this.y >= Game.HEIGHT - 40|| Player.leftHit || Player.rightHit || Player.frontHit){
             this.x = newX;
-            this.y = 0;
+            this.y = newY;
             this.createNewCoin(g);
         }
     }

@@ -7,12 +7,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Scoreboard {
-    public int x;
-    public int y;;
+      public int x;
+      public int y;
 
     public Scoreboard(int x, int y) {
-        //this.x = 0;
-        //this.y = 0;
+          this.x = x;
+          this.y = y;
     }
 
     public void tick() {
