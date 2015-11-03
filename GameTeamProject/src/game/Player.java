@@ -25,7 +25,6 @@ public class Player {
     public static boolean moovingRight;
 
     private BufferedImage playerImage;
-    private Coins coins;
 
     public Player(int x, int y) {
         this.x = x;
@@ -46,7 +45,7 @@ public class Player {
         this.leftHitCar = false;
         this.rightHitCar = false;
         this.frontHitCar = false;
-        this.coins = new Coins();
+
     }
 
     public void tick() {
@@ -125,7 +124,9 @@ public class Player {
             System.out.println("Right");
         }
 
-        if(pointY1Player == pointY2Coin || pointY1Player < pointY2Coin && pointY1Coin < pointY1Player){
+        if(pointY1Player == pointY2Coin &&
+            (pointX1Player <= pointX2Coin && pointX2Player >= pointX1Coin ||
+             pointX1Player <= pointX2Player && pointX2Coin >= pointX1Player)){
             isBlow = true;
             this.frontHit = true;
             System.out.println("Front");

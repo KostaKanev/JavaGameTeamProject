@@ -5,14 +5,15 @@ import graphics.ImgLoader;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Scoreboard {
-      public int x;
-      public int y;
+    private int x;
+    private int y;
 
     public Scoreboard(int x, int y) {
-          this.x = x;
-          this.y = y;
+        this.x = x;
+        this.y = y;
     }
 
     public void tick() {
@@ -21,7 +22,6 @@ public class Scoreboard {
 
     public void render(Graphics g) {
         g.drawImage(Assets.scoreboardImage,475,0,null);
-
         for (int i = 0; i < 5 ; i++) {
             g.drawImage(Assets.nineScore,480 + (45 * i),250,null);
         }
