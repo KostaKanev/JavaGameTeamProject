@@ -31,6 +31,7 @@ public class Game implements Runnable {
     private Scoreboard scoreboard;
     private Coins coins;
     private boolean isHit = false;
+    private boolean isDie = false;
 
     public Game(String title) {
         this.title = title;
@@ -81,16 +82,14 @@ public class Game implements Runnable {
             this.player.blood -= 10;
             isHit = true;
         }
-
-        if(this.player.blood <= 0) {
-            System.out.println("Dead");
-            stop();
-        }
         this.scoreboard.tick();
         this.coins.tick();
         if(player.intersectsCoins(this.coins)){
             Player.score += 1;
             System.out.println(Player.score);
+        }
+        if(this.isDie){
+            stop();
         }
     }
 
@@ -118,10 +117,12 @@ public class Game implements Runnable {
 
         if(isHit == true){
             g.drawImage(ImgLoader.loadImage("/img/hit.png"), Player.x + 20, Player.y + 40, 90, 90, null);
-           // g.drawImage(ImgLoader.loadImage("/img/redf.png"), 0, 0, Game.WIDTH, Game.HEIGHT, null);
             isHit = false;
         }
-
+        if(Player.blood < 0){
+            g.drawImage(Assets.red, -90, 0, Game.WIDTH - 50, Game.HEIGHT - 50, null);
+            isDie = true;
+        }
         this.scoreboard.render(g);
         this.coins.render(g);
         //END DRAWING
