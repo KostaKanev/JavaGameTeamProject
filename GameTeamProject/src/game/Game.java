@@ -31,7 +31,7 @@ public class Game implements Runnable {
     private Scoreboard scoreboard;
     private Coins coins;
     private boolean isHit = false;
-    private boolean isDie = false;
+    public static boolean isDie = false;
 
     public Game(String title) {
         this.title = title;
@@ -150,7 +150,6 @@ public class Game implements Runnable {
                 tick();
                 render();
                 delta--;
-
             }
         }
         this.stop();
