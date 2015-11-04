@@ -37,6 +37,9 @@ public class Coins {
         int newY = random.nextInt((-44 + 90)+ 1) + -44;
 
         if(this.y >= Game.HEIGHT - 40|| Player.leftHit || Player.rightHit || Player.frontHit){
+            if(Player.score % 5 == 0){
+                Player.blood += 25;
+            }
             this.x = newX;
             this.y = newY;
             this.createNewCoin(g);

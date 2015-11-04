@@ -13,8 +13,8 @@ public class Assets {
     public static BufferedImage zeroScore, oneScore , twoScore, threeScore,
             fourScore, fiveScore, sixScore, sevenScore, eightScore, nineScore;
     public static BufferedImage zeroLives, oneLives, twoLives, threeLives,
-            fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives, score;
-    public static BufferedImage hearthImage, coins, logo;
+            fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives;
+    public static BufferedImage hearthImage, coins, logo, score;
     public static BufferedImage scoreboardImage;
 
 

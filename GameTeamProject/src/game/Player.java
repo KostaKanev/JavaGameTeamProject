@@ -30,7 +30,7 @@ public class Player {
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
-        this.blood = 500;
+        this.blood = 99;
         this.width = 85;
         this.height = 168;
         this.velosity = 5;
