@@ -23,7 +23,7 @@ public class Coins {
         this.height = 67;
         this.image = Assets.coins;
         this.random = new Random();
-        this.velosity = 6;
+        this.velosity = 12;
     }
     public void tick(){
         this.y += velosity;

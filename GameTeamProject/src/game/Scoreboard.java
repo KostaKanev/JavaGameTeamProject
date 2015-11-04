@@ -33,7 +33,7 @@ public class Scoreboard {
         g.drawImage(Assets.zeroLives,545,70,null);
         g.drawImage(Assets.oneLives,635,70,null);
         g.drawImage(Assets.score, 560, 240, null);
-        g.drawImage(Assets.coinIcon, 490, 240, null);
+        g.drawImage(Assets.coins, 470, 220, null);
     }
 
     public void drawScore(Graphics g, int score){
