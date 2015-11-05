@@ -33,7 +33,7 @@ public class Player {
         this.blood = 99;
         this.width = 85;
         this.height = 168;
-        this.velosity = 5;
+        this.velosity = 12;
         this.moovingLeft = false;
         this.moovingRight = false;
         this.score = 0;

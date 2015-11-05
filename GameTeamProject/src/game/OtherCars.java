@@ -17,7 +17,7 @@ public class OtherCars {
 
     public OtherCars(BufferedImage playerImage){
         this.x = 70;
-        this.velosity = 3;
+        this.velosity = 4;
         this.playerImage = playerImage;
         this.width = 85;
         this.height = 168;
