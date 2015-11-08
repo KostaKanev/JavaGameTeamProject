@@ -17,7 +17,7 @@ public class Track {
         this.x = x;
         this.y = y;
 
-        this.velosity = 13;
+        this.velosity = 16;
 
         this.trackImage = ImgLoader.loadImage("/img/bkg.jpg");
     }
@@ -35,7 +35,7 @@ public class Track {
         //10 = 20 sec
         //15 = 30 sec
         //...
-        for (int i = 1; i < 1500; i++) {
+        for (int i = 1; i < 700; i++) {
             g.drawImage(this.trackImage, 0, this.y - (660 * i),null);
         }
     }

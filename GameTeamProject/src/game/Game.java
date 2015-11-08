@@ -15,7 +15,7 @@ public class Game implements Runnable {
     public static final int START_POSITION = 450;
     private final int LEFT_BORDER = 55;
     private final int RIGHT_BORDER = 332;
-    private static int index = 0;
+    private int index = 0;
     private String title;
     private Thread thread;
     private boolean isRunning;
@@ -25,12 +25,11 @@ public class Game implements Runnable {
     private InputHandler ih;
     private SpriteSheet spriteSheet;
 
-    private static Player player;
+    private Player player;
     private ArrayList<OtherCars> otherCar;
     private Track track;
     private Scoreboard scoreboard;
     private Coins coins;
-    private boolean isHit = false;
     public static boolean isDie = false;
 
     public Game(String title) {
@@ -39,11 +38,11 @@ public class Game implements Runnable {
     }
 
     public void init(){
-        this.display =  new Display(this.title, this.WIDTH, this.HEIGHT);
+        this.display =  new Display(this.title, WIDTH, HEIGHT);
         this.ih = new InputHandler(this.display);
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/spriteCars.png"));
         Assets.init();
-        this.track = new Track(START_POSITION, this.HEIGHT);
+        this.track = new Track(START_POSITION, HEIGHT);
         this.otherCar = new ArrayList<>();
         otherCar.add(new OtherCars(Assets.taxi));
         otherCar.add(new OtherCars(Assets.playerCar1));
@@ -53,9 +52,9 @@ public class Game implements Runnable {
         otherCar.add(new OtherCars(Assets.blackViper));
         otherCar.add(new OtherCars(Assets.audi));
 
-        this.player = new Player(200, this.HEIGHT - 190);
-        this.scoreboard = new Scoreboard(0,0);
-        this.coins = new Coins();
+        this.player = new Player(200, HEIGHT - 190);
+        this.scoreboard = new Scoreboard(0,0, this.player);
+        this.coins = new Coins(this.player);
 
     }
 
@@ -63,12 +62,12 @@ public class Game implements Runnable {
         this.otherCar.stream().forEach(a -> a.tick());
         this.track.tick();
         this.player.tick();
-        if (this.player.x <= this.LEFT_BORDER) {
+        if (this.player.getX() <= this.LEFT_BORDER) {
 
-            this.player.x = this.LEFT_BORDER;
-        } else if (this.player.x >= this.RIGHT_BORDER) {
+            this.player.setX(this.LEFT_BORDER);
+        } else if (this.player.getX() >= this.RIGHT_BORDER) {
 
-            this.player.x = this.RIGHT_BORDER;
+            this.player.setX(this.RIGHT_BORDER);
         }
 
         if(this.player.intersects(this.otherCar.get(0)) ||
@@ -79,15 +78,12 @@ public class Game implements Runnable {
                 this.player.intersects(this.otherCar.get(5))||
                 this.player.intersects(this.otherCar.get(6))
                 ){
-            this.player.blood -= 10;
-            isHit = true;
+            int takeBlood = this.player.getBlood() - 10;
+            this.player.setBlood(takeBlood);
         }
         this.scoreboard.tick();
         this.coins.tick();
-        if(player.intersectsCoins(this.coins)){
-            Player.score += 1;
-            System.out.println(Player.score);
-        }
+
         if(this.isDie){
             stop();
         }
@@ -107,25 +103,20 @@ public class Game implements Runnable {
         this.player.render(g);
         this.otherCar.get(index).render(g);
 
-        if(this.otherCar.get(index).y >= this.HEIGHT - 60){
+        if(otherCar.get(index).getY() >= HEIGHT - 60){
             index++;
-            if(index >= this.otherCar.size()){
+            if(index >= otherCar.size()){
                 index = 0;
             }
-            this.otherCar.get(index).render(g);
+            otherCar.get(index).render(g);
         }
 
-        if(isHit == true){
-            g.drawImage(ImgLoader.loadImage("/img/hit.png"), Player.x + 20, Player.y + 40, 90, 90, null);
-            isHit = false;
-        }
-        if(Player.blood < 0){
+        if(this.player.getBlood() < 0){
             g.drawImage(Assets.red, -90, 0, Game.WIDTH - 50, Game.HEIGHT - 50, null);
             isDie = true;
         }
         this.scoreboard.render(g);
         this.coins.render(g);
-        //END DRAWING
 
         this.bs.show();
         this.g.dispose();

@@ -15,8 +15,8 @@ public class Coins {
     private int velosity;
 
     private BufferedImage image;
-
-    public Coins() {
+    private Player player;
+    public Coins(Player player) {
         this.x = 150;
         this.y = 0;
         this.width = 100;
@@ -24,6 +24,7 @@ public class Coins {
         this.image = Assets.coins;
         this.random = new Random();
         this.velosity = 12;
+        this.player = player;
     }
     public void tick(){
         this.y += velosity;
@@ -37,8 +38,9 @@ public class Coins {
         int newY = random.nextInt((-44 + 90)+ 1) + -44;
 
         if(this.y >= Game.HEIGHT - 40|| Player.leftHit || Player.rightHit || Player.frontHit){
-            if(Player.score % 5 == 0 && Player.blood < 89){
-                Player.blood += 10;
+            if(player.getScore() % 5 == 0 && player.getBlood() < 89){
+                int addBlood = player.getBlood() + 10;
+                player.setBlood(addBlood);
             }
             this.x = newX;
             this.y = newY;

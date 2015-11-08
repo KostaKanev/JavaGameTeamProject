@@ -7,36 +7,61 @@ import java.awt.image.BufferedImage;
 
 public class OtherCars {
     private final int DROP_POSITION_Y = -250;
-    public static int x;
-    public static int y;
-    public static int width;
-    public static int height;
-    private int velosity;
+    public static final int WIDTH = 85;
+    public static final int HEIGHT = 168;
+    private final int VELOSITY = 7;
+    private int x;
+    private int y;
+    private int supplement;
+
     private BufferedImage playerImage;
-    private int supplement = 80;
 
     public OtherCars(BufferedImage playerImage){
-        this.x = 70;
-        this.velosity = 4;
+        this.x = 75;
+        this.y = 25;
         this.playerImage = playerImage;
-        this.width = 85;
-        this.height = 168;
+        this.supplement = 120;
     }
 
+    public int getX(){
+        return this.x;
+    }
+
+    public  void setX(int x){
+        this.x = x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
+    public  void setY(int y){
+        this.y = y;
+    }
+
+    public int getSupplement(){
+        return this.supplement;
+    }
+
+    public  void setSupplement(int supplement){
+        this.supplement = supplement;
+    }
+
+
     public void tick(){
-        this.y += this.velosity;
-        this.supplement += 60;
+        int addSupplement = this.getSupplement() + 60;
+        int addY = this.getY() + VELOSITY;
+        this.setY(addY);
+        this.setSupplement(addSupplement);
         if(supplement >= 400){
             supplement = 80;
         }
     }
-
     public void render(Graphics g){
         g.drawImage(this.playerImage, this.x, this.y, null);
-
-        if(this.y >= Game.HEIGHT){
-            this.y = DROP_POSITION_Y;
-            this.x = supplement;
+        if(this.getY() >= Game.HEIGHT){
+            this.setY(DROP_POSITION_Y);
+            this.setX(supplement);
             this.createNewCar(g);
         }
     }

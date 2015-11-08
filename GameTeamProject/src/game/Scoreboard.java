@@ -17,12 +17,14 @@ public class Scoreboard {
     private final int X_FOR_HUNDREDS_SCORE = 597;
     private final int X_FOR_THOUSANDS_SCORE = 545;
     private final int X_FOR_TEN_THOUSANDS_SCORE = 495;
+    private Player player;
     private int x;
     private int y;
 
-    public Scoreboard(int x, int y) {
+    public Scoreboard(int x, int y, Player player) {
         this.x = x;
         this.y = y;
+        this.player = player;
     }
 
     public void tick() {
@@ -32,11 +34,10 @@ public class Scoreboard {
     public void render(Graphics g) {
 
         g.drawImage(Assets.scoreboardImage,475,0,null);
-        this.drawScore(g, Player.score);
-        this.drawBlood(g, Player.blood);
+        this.drawScore(g, this.player.getScore());
+        this.drawBlood(g, this.player.getBlood());
         g.drawImage(Assets.hearthImage,480,95,null);
-       // g.drawImage(Assets.zeroLives,545,70,null);
-        //g.drawImage(Assets.oneLives,635,70,null);
+
         g.drawImage(Assets.score, 560, 240, null);
         g.drawImage(Assets.coins, 470, 220, null);
         g.drawImage(Assets.logo, 400, 390, null);
