@@ -1,7 +1,6 @@
 package game;
 
 import graphics.Assets;
-import objects.Player;
 
 import java.awt.*;
 

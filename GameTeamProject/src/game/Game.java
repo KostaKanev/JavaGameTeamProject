@@ -4,14 +4,9 @@ import display.Display;
 import graphics.Assets;
 import graphics.ImgLoader;
 import graphics.SpriteSheet;
-import objects.Car;
-import objects.Coins;
-import objects.OtherCars;
-import objects.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
-import java.util.ArrayList;
 
 public class Game implements Runnable {
     public static final int WIDTH = 720;
@@ -35,6 +30,7 @@ public class Game implements Runnable {
     private Track track;
     private Scoreboard scoreboard;
     private Coins coins;
+   // private Skull skull;
     public static boolean isDie = false;
     public final int positionX1 = START_POSITION/6;
     public final int positionX2 = HEIGHT/2 - 10;
@@ -49,7 +45,6 @@ public class Game implements Runnable {
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/spriteCars.png"));
         Assets.init();
         this.track = new Track(START_POSITION, HEIGHT);
-
         this.otherCar = new OtherCars(positionX1, 0, 0);
         this.otherCar3 = new OtherCars(positionX2, 505, 1);
         this.car = new Car(200, 50, 4);
@@ -107,7 +102,6 @@ public class Game implements Runnable {
         }
         this.scoreboard.render(g);
         this.coins.render(g);
-
         this.bs.show();
         this.g.dispose();
     }
