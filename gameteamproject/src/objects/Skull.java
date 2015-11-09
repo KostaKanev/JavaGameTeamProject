@@ -19,6 +19,8 @@ public class Skull {
     private BufferedImage image;
     private Player player;
 
+    private int countOfTick;
+
     public Skull(Player player, int x, int y) {
         this.x = x;
         this.y = y;
@@ -37,15 +39,17 @@ public class Skull {
 
     public void tick(){
         this.y += VELOCITY;
+        this.countOfTick++;
     }
 
     public void render(Graphics g){
-        g.drawImage(this.image,this.x ,this.y , null);
-
-        int newX = random.nextInt((50 + 150) + 1) + 50;
+        if(countOfTick > 100) {
+            g.drawImage(this.image, this.x, this.y, null);
+        }
+        int newX = random.nextInt((60 + 150) + 1) + 60;
         int newY = random.nextInt((-44 + 90)+ 1) + -44;
 
-        if(this.y >= Game.HEIGHT * 6){
+        if(this.y >= Game.HEIGHT * 2 && countOfTick%200 == 0){
             this.x = newX;
             this.y = newY;
             this.createNewSkull(g);

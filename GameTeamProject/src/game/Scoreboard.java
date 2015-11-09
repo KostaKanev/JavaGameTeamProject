@@ -37,7 +37,7 @@ public class Scoreboard {
         g.drawImage(Assets.hearthImage,480,95,null);
 
         g.drawImage(Assets.score, 560, 240, null);
-        g.drawImage(Assets.coins, 470, 220, null);
+        g.drawImage(Assets.coins, 470, 218, null);
         g.drawImage(Assets.logo, 400, 390, null);
     }
     public void drawBlood(Graphics g, int blood){
