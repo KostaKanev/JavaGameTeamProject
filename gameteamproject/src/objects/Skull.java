@@ -49,7 +49,7 @@ public class Skull {
         int newX = random.nextInt((60 + 150) + 1) + 60;
         int newY = random.nextInt((-44 + 90)+ 1) + -44;
 
-        if(this.y >= Game.HEIGHT * 2 && countOfTick%200 == 0){
+        if(this.y >= Game.HEIGHT * 2 && countOfTick % 220 == 0){
             this.x = newX;
             this.y = newY;
             this.createNewSkull(g);

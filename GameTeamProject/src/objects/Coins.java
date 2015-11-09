@@ -18,6 +18,7 @@ public class Coins {
 
     private BufferedImage image;
     private Player player;
+    private int countOfTick;
 
     public Coins(Player player, int x, int y) {
         this.x = x;
@@ -37,10 +38,13 @@ public class Coins {
 
     public void tick(){
         this.y += VELOCITY;
+        this.countOfTick++;
     }
 
     public void render(Graphics g){
-        g.drawImage(this.image,this.x ,this.y , null);
+        if(countOfTick > 50){
+            g.drawImage(this.image,this.x ,this.y , null);
+        }
 
         int newX = random.nextInt((60 + 150) + 1) + 60;
         int newY = random.nextInt((-44 + 90)+ 1) + -44;
