@@ -52,7 +52,7 @@ public class Game implements Runnable {
 
         this.otherCar = new OtherCars(positionX1, 0, 0);
         this.otherCar3 = new OtherCars(positionX2, 505, 1);
-        this.car = new Car(200, 50);
+        this.car = new Car(200, 50, 4);
         this.player = new Player(200, HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0, this.player);
         this.coins = new Coins(this.player, 150, 0);
@@ -78,7 +78,7 @@ public class Game implements Runnable {
             int takeBlood = this.player.getBlood() - 5;
             this.player.setBlood(takeBlood);
         }
-
+        this.player.intersectsCoins(this.coins);
         this.scoreboard.tick();
         this.coins.tick();
         if(this.isDie){

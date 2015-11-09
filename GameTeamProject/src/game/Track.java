@@ -6,10 +6,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Track {
-
-    public int x;
-    public int y;
-    public int velosity;
+    private int x;
+    private int y;
+    public final int VELOCITY = 18;
 
     private BufferedImage trackImage;
 
@@ -17,13 +16,11 @@ public class Track {
         this.x = x;
         this.y = y;
 
-        this.velosity = 18;
-
         this.trackImage = ImgLoader.loadImage("/img/bkg.jpg");
     }
 
     public void tick(){
-        this.y += this.velosity;
+        this.y += this.VELOCITY;
 
     }
 

@@ -11,6 +11,7 @@ public class SoundTest {
         this.url = url;
         this.clip = clip;
     }
+
     public void play(){
         if(!Game.isDie) {
             this.clip.loop();
