@@ -1,10 +1,10 @@
-package game;
+package objects;
 
 import game.Car;
-import game.Coins;
-import game.OtherCars;
+import objects.Coins;
 import graphics.Assets;
 import graphics.ImgLoader;
+import objects.OtherCars;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

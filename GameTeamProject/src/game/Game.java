@@ -4,6 +4,9 @@ import display.Display;
 import graphics.Assets;
 import graphics.ImgLoader;
 import graphics.SpriteSheet;
+import objects.Coins;
+import objects.OtherCars;
+import objects.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
