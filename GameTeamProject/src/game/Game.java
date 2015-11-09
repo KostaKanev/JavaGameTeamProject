@@ -31,7 +31,7 @@ public class Game implements Runnable {
     private Player player;
     private OtherCars otherCar;
     private OtherCars otherCar3;
-   // private Car car;
+    private Car car;
     private Track track;
     private Scoreboard scoreboard;
     private Coins coins;
@@ -52,7 +52,7 @@ public class Game implements Runnable {
 
         this.otherCar = new OtherCars(positionX1, 0, 0);
         this.otherCar3 = new OtherCars(positionX2, 505, 1);
-       // this.car = new Car(150, 1000);
+        this.car = new Car(200, 50);
         this.player = new Player(200, HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0, this.player);
         this.coins = new Coins(this.player, 150, 0);
@@ -61,7 +61,7 @@ public class Game implements Runnable {
     private void tick(){
         this.otherCar.tick();
         this.otherCar3.tick();
-        //this.car.tick();
+        this.car.tick();
         this.track.tick();
         this.player.tick();
         if (this.player.getX() <= this.LEFT_BORDER) {
@@ -99,7 +99,7 @@ public class Game implements Runnable {
         this.player.render(g);
         this.otherCar.render(g);
         this.otherCar3.render(g);
-       // this.car.render(g);
+        this.car.render(g);
         if(this.player.getBlood() < 0){
             g.drawImage(Assets.red, -90, 0, Game.WIDTH - 50, Game.HEIGHT - 50, null);
             isDie = true;
