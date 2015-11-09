@@ -1,11 +1,9 @@
 package game;
 
 import graphics.Assets;
-import graphics.ImgLoader;
+import objects.Player;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Scoreboard {
     private final int Y_FOR_BLOOD = 80;

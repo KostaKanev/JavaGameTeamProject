@@ -17,7 +17,7 @@ public class Track {
         this.x = x;
         this.y = y;
 
-        this.velosity = 16;
+        this.velosity = 18;
 
         this.trackImage = ImgLoader.loadImage("/img/bkg.jpg");
     }

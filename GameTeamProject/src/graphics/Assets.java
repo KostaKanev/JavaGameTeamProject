@@ -14,7 +14,7 @@ public class Assets {
             fourScore, fiveScore, sixScore, sevenScore, eightScore, nineScore;
     public static BufferedImage zeroLives, oneLives, twoLives, threeLives,
             fourLives,fiveLives,sixLives,sevenLives,eightLives,nineLives;
-    public static BufferedImage hearthImage, coins, logo, score, red;
+    public static BufferedImage hearthImage, coins, logo, score, red, blue;
     public static BufferedImage scoreboardImage;
 
 
@@ -69,5 +69,6 @@ public class Assets {
         coins = ImgLoader.loadImage("/img/nakovCoin.png");
         logo = ImgLoader.loadImage("/img/logo.png");
         red = ImgLoader.loadImage("/img/GameOver.png");
+        blue = ImgLoader.loadImage("/img/blue.png");
     }
 }

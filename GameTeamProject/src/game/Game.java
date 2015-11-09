@@ -4,6 +4,10 @@ import display.Display;
 import graphics.Assets;
 import graphics.ImgLoader;
 import graphics.SpriteSheet;
+import objects.Car;
+import objects.Coins;
+import objects.OtherCars;
+import objects.Player;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -11,11 +15,10 @@ import java.util.ArrayList;
 
 public class Game implements Runnable {
     public static final int WIDTH = 720;
-    public static final int HEIGHT = 660;
+    public static final int HEIGHT = 658;
     public static final int START_POSITION = 450;
-    private final int LEFT_BORDER = 55;
-    private final int RIGHT_BORDER = 332;
-    private int index = 0;
+    public final int LEFT_BORDER = 55;
+    public final int RIGHT_BORDER = 332;
     private String title;
     private Thread thread;
     private boolean isRunning;
@@ -26,12 +29,15 @@ public class Game implements Runnable {
     private SpriteSheet spriteSheet;
 
     private Player player;
-    private ArrayList<OtherCars> otherCar;
+    private OtherCars otherCar;
+    private OtherCars otherCar3;
+   // private Car car;
     private Track track;
     private Scoreboard scoreboard;
     private Coins coins;
     public static boolean isDie = false;
-
+    public final int positionX1 = START_POSITION/6;
+    public final int positionX2 = HEIGHT/2 - 10;
     public Game(String title) {
         this.title = title;
         this.isRunning = false;
@@ -43,23 +49,19 @@ public class Game implements Runnable {
         this.spriteSheet = new SpriteSheet(ImgLoader.loadImage("/img/spriteCars.png"));
         Assets.init();
         this.track = new Track(START_POSITION, HEIGHT);
-        this.otherCar = new ArrayList<>();
-        otherCar.add(new OtherCars(Assets.taxi));
-        otherCar.add(new OtherCars(Assets.playerCar1));
-        otherCar.add(new OtherCars(Assets.blackViper));
-        otherCar.add(new OtherCars(Assets.taxi));
-        otherCar.add(new OtherCars(Assets.playerCar1));
-        otherCar.add(new OtherCars(Assets.blackViper));
-        otherCar.add(new OtherCars(Assets.audi));
 
+        this.otherCar = new OtherCars(positionX1, 0, 0);
+        this.otherCar3 = new OtherCars(positionX2, 505, 1);
+       // this.car = new Car(150, 1000);
         this.player = new Player(200, HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0, this.player);
-        this.coins = new Coins(this.player);
-
+        this.coins = new Coins(this.player, 150, 0);
     }
 
     private void tick(){
-        this.otherCar.stream().forEach(a -> a.tick());
+        this.otherCar.tick();
+        this.otherCar3.tick();
+        //this.car.tick();
         this.track.tick();
         this.player.tick();
         if (this.player.getX() <= this.LEFT_BORDER) {
@@ -70,20 +72,14 @@ public class Game implements Runnable {
             this.player.setX(this.RIGHT_BORDER);
         }
 
-        if(this.player.intersects(this.otherCar.get(0)) ||
-                this.player.intersects(this.otherCar.get(1))||
-                this.player.intersects(this.otherCar.get(2))||
-                this.player.intersects(this.otherCar.get(3))||
-                this.player.intersects(this.otherCar.get(4))||
-                this.player.intersects(this.otherCar.get(5))||
-                this.player.intersects(this.otherCar.get(6))
-                ){
+        if(this.player.intersects(this.otherCar)
+        || this.player.intersects(this.otherCar3)
+        ){
             int takeBlood = this.player.getBlood() - 10;
             this.player.setBlood(takeBlood);
         }
         this.scoreboard.tick();
         this.coins.tick();
-
         if(this.isDie){
             stop();
         }
@@ -101,16 +97,9 @@ public class Game implements Runnable {
         //START DRAWING
         this.track.render(g);
         this.player.render(g);
-        this.otherCar.get(index).render(g);
-
-        if(otherCar.get(index).getY() >= HEIGHT - 60){
-            index++;
-            if(index >= otherCar.size()){
-                index = 0;
-            }
-            otherCar.get(index).render(g);
-        }
-
+        this.otherCar.render(g);
+        this.otherCar3.render(g);
+       // this.car.render(g);
         if(this.player.getBlood() < 0){
             g.drawImage(Assets.red, -90, 0, Game.WIDTH - 50, Game.HEIGHT - 50, null);
             isDie = true;
@@ -121,8 +110,6 @@ public class Game implements Runnable {
         this.bs.show();
         this.g.dispose();
     }
-
-
 
     @Override
     public void run() {
