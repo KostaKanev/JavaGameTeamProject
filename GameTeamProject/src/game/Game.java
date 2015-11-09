@@ -74,10 +74,11 @@ public class Game implements Runnable {
 
         if(this.player.intersects(this.otherCar)
         || this.player.intersects(this.otherCar3)
-        ){
-            int takeBlood = this.player.getBlood() - 10;
+        || this.player.intersects(this.car)){
+            int takeBlood = this.player.getBlood() - 5;
             this.player.setBlood(takeBlood);
         }
+
         this.scoreboard.tick();
         this.coins.tick();
         if(this.isDie){
