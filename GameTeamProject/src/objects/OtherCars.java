@@ -49,7 +49,7 @@ public class OtherCars {
 
     public void render(Graphics g){
         g.drawImage(this.playerImages.get(index), this.x, this.y, null);
-        if(this.getY() >= Game.HEIGHT * 2 + WIDTH){
+        if(this.getY() >= Game.HEIGHT * 3){
             index++;
             if(index >= playerImages.size()){
                 index = 0;

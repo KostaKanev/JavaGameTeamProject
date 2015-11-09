@@ -7,6 +7,7 @@ import graphics.SpriteSheet;
 import objects.Coins;
 import objects.OtherCars;
 import objects.Player;
+import objects.Skull;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -33,7 +34,7 @@ public class Game implements Runnable {
     private Track track;
     private Scoreboard scoreboard;
     private Coins coins;
-   // private Skull skull;
+    private Skull skull;
     public static boolean isDie = false;
     public final int positionX1 = START_POSITION/6;
     public final int positionX2 = HEIGHT/2 - 10;
@@ -54,6 +55,7 @@ public class Game implements Runnable {
         this.player = new Player(200, HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0, this.player);
         this.coins = new Coins(this.player, 150, 0);
+        this.skull = new Skull(this.player, 200, 0);
     }
 
     private void tick(){
@@ -76,9 +78,12 @@ public class Game implements Runnable {
             int takeBlood = this.player.getBlood() - 5;
             this.player.setBlood(takeBlood);
         }
-        this.player.intersectsCoins(this.coins);
+        this.player.intersectsObject(this.coins);
+        this.player.intersectsObject(this.skull);
+
         this.scoreboard.tick();
         this.coins.tick();
+        this.skull.tick();
         if(this.isDie){
             stop();
         }
@@ -96,8 +101,7 @@ public class Game implements Runnable {
         //START DRAWING
         this.track.render(g);
         this.player.render(g);
-        this.otherCar.render(g);
-        this.otherCar3.render(g);
+
         this.car.render(g);
         if(this.player.getBlood() < 0){
             g.drawImage(Assets.red, -90, 0, Game.WIDTH - 50, Game.HEIGHT - 50, null);
@@ -105,6 +109,9 @@ public class Game implements Runnable {
         }
         this.scoreboard.render(g);
         this.coins.render(g);
+        this.skull.render(g);
+        this.otherCar.render(g);
+        this.otherCar3.render(g);
         this.bs.show();
         this.g.dispose();
     }

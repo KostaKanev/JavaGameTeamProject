@@ -158,7 +158,7 @@ public class Player {
         }
         return isBlow;
     }
-    public boolean intersectsCoins(Coins coins) {
+    public boolean intersectsObject(Coins coins) {
         int pointX1Player = this.x;
         int pointX1Coin = coins.getX();
         int pointX2Coin = coins.getX() + Coins.WIDTH;
@@ -193,14 +193,45 @@ public class Player {
         }
 
         if(pointY1Player == pointY2Coin &&
-            (pointX1Player <= pointX2Coin && pointX2Player >= pointX1Coin ||
-             pointX1Player <= pointX2Player && pointX2Coin >= pointX1Player)){
+                (pointX1Player <= pointX2Coin && pointX2Player >= pointX1Coin ||
+                        pointX1Player <= pointX2Player && pointX2Coin >= pointX1Player)){
             isBlow = true;
             this.frontHit = true;
             int add = this.getScore() + 1;
             this.setScore(add);
             System.out.println(this.getScore());
             System.out.println("Front");
+        }
+        return isBlow;
+    }
+    public boolean intersectsObject(Skull skull) {
+        int pointX1Player = this.x;
+        int pointX1Coin = skull.getX();
+        int pointX2Coin = skull.getX() + Skull.WIDTH;
+        int pointX2Player = this.x + WIDTH;
+        int pointY1Player = this.y;
+        int pointY1Coin = skull.getY();
+        int pointY2Coin = skull.getY() + Skull.HEIGHT;
+        int pointY2Player = this.y + HEIGHT;
+        boolean isBlow = false;
+
+        if((pointY2Coin >= pointY1Player && pointY1Coin <= pointY2Player) &&
+                (pointX1Player <= pointX2Coin && pointX2Player >= pointX2Coin)){
+            isBlow = true;
+            this.blood -= 1;
+        }
+
+        if((pointY2Coin >= pointY1Player && pointY1Coin <= pointY2Player) &&
+                (pointX2Player >= pointX1Coin && pointX1Player <= pointX1Coin)){
+            isBlow = true;
+            this.blood -= 1;
+        }
+
+        if(pointY1Player == pointY2Coin &&
+                (pointX1Player <= pointX2Coin && pointX2Player >= pointX1Coin ||
+                        pointX1Player <= pointX2Player && pointX2Coin >= pointX1Player)){
+            isBlow = true;
+          this.blood -= 1;
         }
         return isBlow;
     }
