@@ -15,6 +15,8 @@ public class Game implements Runnable {
     public static final int START_POSITION = 450;
     public final int LEFT_BORDER = 55;
     public final int RIGHT_BORDER = 332;
+
+
     private String title;
     private Thread thread;
     private boolean isRunning;
@@ -28,13 +30,17 @@ public class Game implements Runnable {
     private OtherCars otherCar;
     private OtherCars otherCar3;
     private Car car;
+
     private Track track;
     private Scoreboard scoreboard;
+
     private Coins coins;
     private Skull skull;
     public static boolean isDie = false;
-    public final int positionX1 = START_POSITION/6;
-    public final int positionX2 = HEIGHT/2 - 10;
+
+    public final int positionX1 = 70;
+    public final int positionX2 = 320;
+
     public Game(String title) {
         this.title = title;
         this.isRunning = false;
@@ -47,8 +53,8 @@ public class Game implements Runnable {
         Assets.init();
         this.track = new Track(START_POSITION, HEIGHT);
         this.otherCar = new OtherCars(positionX1, 0, 0);
-        this.otherCar3 = new OtherCars(positionX2, 505, 1);
-        this.car = new Car(200, 50, 4);
+        this.otherCar3 = new OtherCars(positionX2, 530, 1);
+        this.car = new Car();
         this.player = new Player(200, HEIGHT - 190);
         this.scoreboard = new Scoreboard(0,0, this.player);
         this.coins = new Coins(this.player, 150, 0);
@@ -61,11 +67,10 @@ public class Game implements Runnable {
         this.car.tick();
         this.track.tick();
         this.player.tick();
-        if (this.player.getX() <= this.LEFT_BORDER) {
 
+        if (this.player.getX() <= this.LEFT_BORDER) {
             this.player.setX(this.LEFT_BORDER);
         } else if (this.player.getX() >= this.RIGHT_BORDER) {
-
             this.player.setX(this.RIGHT_BORDER);
         }
 
@@ -75,12 +80,14 @@ public class Game implements Runnable {
             int takeBlood = this.player.getBlood() - 5;
             this.player.setBlood(takeBlood);
         }
+
         this.player.intersectsObject(this.coins);
         this.player.intersectsObject(this.skull);
 
         this.scoreboard.tick();
         this.coins.tick();
         this.skull.tick();
+
         if(this.isDie){
             stop();
         }
@@ -109,6 +116,7 @@ public class Game implements Runnable {
         this.skull.render(g);
         this.otherCar.render(g);
         this.otherCar3.render(g);
+
         this.bs.show();
         this.g.dispose();
     }

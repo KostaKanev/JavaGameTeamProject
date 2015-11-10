@@ -111,7 +111,7 @@ public class Player {
             this.leftHitCar = true;
             isBlow = true;
             System.out.println("Left");
-            this.x += 9;
+            this.x += 19;
             isHit = true;
         }
 
@@ -120,7 +120,7 @@ public class Player {
             this.rightHitCar = true;
             isBlow = true;
             System.out.println("Right");
-            this.x -= 9;
+            this.x -= 19;
             isHit = true;
         }
         return isBlow;

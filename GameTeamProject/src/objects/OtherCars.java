@@ -8,10 +8,10 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class OtherCars {
-    private final int DROP_POSITION_Y = -250;
+    public final int DROP_POSITION_Y = -250;
     public static final int WIDTH = 85;
     public static final int HEIGHT = 168;
-    private final int VELOCITY = 8;
+    public final int VELOCITY = 6;
     private int index;
     private int x;
     private int y;
