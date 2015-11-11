@@ -48,7 +48,7 @@ public class Coins {
         int newX = random.nextInt((MIN_X + MAX_X) + 1) + MIN_X;
         int newY = random.nextInt((MIN_Y + MAX_Y)+ 1) + MIN_Y;
 
-        if(this.y >= Game.HEIGHT - 40|| Player.leftHit || Player.rightHit || Player.frontHit){
+        if(this.y >= Game.HEIGHT - 40 || Player.leftHit || Player.rightHit || Player.frontHit){
             if(player.getScore() % 5 == 0 && player.getBlood() < 89){
                 int addBlood = player.getBlood() + 10;
                 player.setBlood(addBlood);

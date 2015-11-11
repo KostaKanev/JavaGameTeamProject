@@ -48,7 +48,7 @@ public class Skull {
         if(this.y % 100 == 0){
             this.x -= VELOCITY_X;
         }
-        
+
         this.countOfTick++;
     }
 
