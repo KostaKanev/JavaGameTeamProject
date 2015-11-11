@@ -42,9 +42,9 @@ public class Coins {
     }
 
     public void render(Graphics g){
-        if(countOfTick > 50){
+
             g.drawImage(this.image,this.x ,this.y , null);
-        }
+
 
         int newX = random.nextInt((60 + 150) + 1) + 60;
         int newY = random.nextInt((-44 + 90)+ 1) + -44;
