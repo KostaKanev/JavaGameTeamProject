@@ -106,16 +106,17 @@ public class Game implements Runnable {
         this.track.render(g);
         this.player.render(g);
 
-        this.car.render(g);
+
         if(this.player.getBlood() < 0){
             g.drawImage(Assets.red, -90, 0, Game.WIDTH - 50, Game.HEIGHT - 50, null);
             isDie = true;
         }
         this.scoreboard.render(g);
         this.coins.render(g);
-        this.skull.render(g);
         this.otherCar.render(g);
         this.otherCar3.render(g);
+        this.car.render(g);
+        this.skull.render(g);
 
         this.bs.show();
         this.g.dispose();

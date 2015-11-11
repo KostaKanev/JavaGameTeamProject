@@ -58,6 +58,7 @@ public class Car {
     }
 
     public void createNewCar(Graphics g) {
+
         g.drawImage(this.playerImages.get(index), this.x, this.y, null);
     }
 }
